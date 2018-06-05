@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Counter from './counter';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 interface IProps {
 	onClick: (value: string, years: number) => void;
@@ -18,37 +19,37 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 	
 	public render() {
 		return (
-			<form name="addEmployee" onSubmit={(e) => this.onSubmit(e)}>
+			<form onSubmit={(e) => this.onSubmit(e)}>
 				<h3>Enter employee details</h3>
-				<label htmlFor="fullName">Full name</label>
-				<input id="fullName"
-					value={this.state.name}
-					onChange={(event) => this.handleUserInput(event)}
+				<TextField
+          id="name"
+          label="Name"
+          value={this.state.name}
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleUserInput(event as React.ChangeEvent<HTMLInputElement>)}
+					margin="normal"
 					required={true}
-				/>
+        />
 				<br />
-				<Counter 
-					text="total years of experience"
-					value={this.state.totalYearsExperience}
-					increment={() => this.increment()}
-					decrement={() => this.decrement()}
-				/>
+				<TextField
+          id="years"
+          label="total years experience"
+          value={this.state.totalYearsExperience}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+						const value: number = parseInt(event.target.value, 10);
+						if (value >= 0) {
+							this.setState({totalYearsExperience: parseInt(event.target.value, 10)});
+						}
+					}}
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+					margin="normal"
+        />
 				<br />
-				<button type="submit">Add employee</button>
+				<Button variant="raised" color="primary" type="submit">Add employee</Button>
 			</form>
 		);
-	}
-
-	private increment() {
-		const years =	this.state.totalYearsExperience;
-		this.setState({totalYearsExperience: years + 1});
-	}
-
-	private decrement() {
-		if (this.state.totalYearsExperience !== 0) {
-			const years =	this.state.totalYearsExperience;
-			this.setState({totalYearsExperience: years - 1});
-		}
 	}
 
 	private handleUserInput(e: React.ChangeEvent<HTMLInputElement>) {
