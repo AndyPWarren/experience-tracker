@@ -12,8 +12,8 @@ export default class Counter extends React.Component<IProps> {
 		return (
 			<span>
 				{this.props.text} {this.props.value}
-				<button onClick={() => this.props.increment()}>+</button>
-				<button onClick={() => this.props.decrement()} disabled={this.props.value === 0}>-</button>
+				<button type="button" onClick={() => this.props.increment()}>+</button>
+				<button type="button" onClick={() => this.props.decrement()} disabled={this.props.value === 0}>-</button>
 			</span>
 		);
 	}

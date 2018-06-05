@@ -7,29 +7,24 @@ interface IProps {
 
 interface IState {
 	totalYearsExperience: number;
+	name: string;
 }
 
 export default class AddEmployee extends React.Component<IProps, IState> {
 	public state: IState = {
-		totalYearsExperience: 0
+		totalYearsExperience: 0,
+		name: ''
 	};
-
-	private input: HTMLInputElement;
 	
 	public render() {
 		return (
-			<div>
+			<form name="addEmployee" onSubmit={(e) => this.onSubmit(e)}>
 				<h3>Enter employee details</h3>
 				<label htmlFor="fullName">Full name</label>
 				<input id="fullName"
-					ref={(node) => {
-						this.input = node as HTMLInputElement;
-					}}
-					onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-						if (e.key === 'Enter') {
-							this.onClick();
-						}
-					}}
+					value={this.state.name}
+					onChange={(event) => this.handleUserInput(event)}
+					required={true}
 				/>
 				<br />
 				<Counter 
@@ -39,14 +34,12 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 					decrement={() => this.decrement()}
 				/>
 				<br />
-				<button onClick={() => {
-					this.onClick();
-				}}>Add employee</button>
-			</div>
+				<button type="submit">Add employee</button>
+			</form>
 		);
 	}
 
-	public increment() {
+	private increment() {
 		const years =	this.state.totalYearsExperience;
 		this.setState({totalYearsExperience: years + 1});
 	}
@@ -58,9 +51,15 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 		}
 	}
 
-	private onClick() {
-		this.props.onClick(this.input.value, this.state.totalYearsExperience);
-		this.input.value = '';
-		this.setState({totalYearsExperience: 0});
+	private handleUserInput(e: React.ChangeEvent<HTMLInputElement>) {
+		e.preventDefault();
+  	const value = e.target.value;
+  	this.setState({name: value});
+	}
+
+	private onSubmit(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		this.props.onClick(this.state.name, this.state.totalYearsExperience);
+		this.setState({totalYearsExperience: 0, name: ''});
 	}
 }
