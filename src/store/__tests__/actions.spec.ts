@@ -6,17 +6,24 @@ describe('actions', () => {
 		it('should create an add employee object', () => {
 			const employee = {
 				name: 'dave smith',
-				totalYearsExperience: 5
+				totalYearsExperience: 5,
+				competencies: [{
+					id: 1,
+					yearsExperience: 1,
+					title: 'coding'
+				}]
 			};
 			const addEmployeeAction: IAddEmployee = addEmployee(
 				employee.name,
-				employee.totalYearsExperience
+				employee.totalYearsExperience,
+				employee.competencies
 			);
 			expect(addEmployeeAction).toEqual({
 				type: ActionTypes.AddEmployee,
 				payload: {
 					name: employee.name,
-					totalYearsExperience: employee.totalYearsExperience
+					totalYearsExperience: employee.totalYearsExperience,
+					competencies: employee.competencies
 				}
 			});
 		});

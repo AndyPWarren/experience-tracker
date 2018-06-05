@@ -14,7 +14,7 @@ describe('store', () => {
 	});
 
 	it('should create an employee', () => {
-		store.dispatch(addEmployee('dave smith', 3));
+		store.dispatch(addEmployee('dave smith', 3, []));
 		const state = store.getState();
 		expect(state.employees.allEmployees).toEqual([{
 			id: 1,
@@ -25,8 +25,8 @@ describe('store', () => {
 	});
 
 	it('should select an employee', () => {
-		store.dispatch(addEmployee('dave smith', 3));
-		store.dispatch(addEmployee('barbra', 1));
+		store.dispatch(addEmployee('dave smith', 3, []));
+		store.dispatch(addEmployee('barbra', 1, []));
 		store.dispatch(selectEmployee(1));
 		const state: IState = store.getState();
 		expect(state.employees.selected).toEqual({

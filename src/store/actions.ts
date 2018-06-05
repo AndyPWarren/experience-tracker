@@ -1,3 +1,5 @@
+import { ICompetence } from "./reducers/competencies";
+
 export enum ActionTypes {
 	AddEmployee = "ADD_EMPLOYEE",
 	UpdateEmployee = "UPDATE_EMPLOYEE",
@@ -11,16 +13,21 @@ export interface IAddEmployee {
 	type: ActionTypes.AddEmployee;
 	payload: {
 		name: string,
-		totalYearsExperience: number
+		totalYearsExperience: number,
+		competencies: ICompetence[]
 	};
 }
 
-export function addEmployee(name: string, totalYearsExperience: number): IAddEmployee {
+export function addEmployee(
+	name: string,
+	totalYearsExperience: number,
+	competencies: ICompetence[]): IAddEmployee {
 	return {
 		type: ActionTypes.AddEmployee,
 		payload: { 
 			name, 
-			totalYearsExperience
+			totalYearsExperience,
+			competencies
 		}
 	};
 }

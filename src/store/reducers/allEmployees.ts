@@ -9,7 +9,7 @@ export function allEmployeesReducer(allEmployees: IEmployee[] = [], action: Acti
 				id: (allEmployees.length > 0) ? allEmployees[allEmployees.length - 1].id + 1 : 1,
 				name: action.payload.name,
 				totalYearsExperience: action.payload.totalYearsExperience,
-				competencies: []
+				competencies: [...action.payload.competencies]
 			}];
 		case ActionTypes.UpdateEmployee:
 			return allEmployees.map((employee) => {

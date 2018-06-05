@@ -21,7 +21,7 @@ describe('employee reducer', () => {
 				competencies: []
 			};
 			deepFreeze(oldState);
-			const newState = allEmployeesReducer(oldState, addEmployee('barbra', 3));
+			const newState = allEmployeesReducer(oldState, addEmployee('barbra', 3, []));
 			expect(newState).toEqual([...oldState, expectedEmployee]);
 		});
 
@@ -32,7 +32,7 @@ describe('employee reducer', () => {
 				totalYearsExperience: 5,
 				competencies: []
 			};
-			const newState = allEmployeesReducer([], addEmployee('dave smith', 5));
+			const newState = allEmployeesReducer([], addEmployee('dave smith', 5, []));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 
@@ -99,7 +99,7 @@ describe('employee reducer', () => {
 				totalYearsExperience: 5,
 				competencies: []
 			};
-			const newState = allEmployeesReducer([], addEmployee('dave smith', 5));
+			const newState = allEmployeesReducer([], addEmployee('dave smith', 5, []));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 	});
