@@ -1,5 +1,8 @@
+import { ISelectEmployee } from './../actions';
 import { ActionTypes, IAddEmployee, IUpdateEmployee, IAddCompetence, IDeleteCompetence, IUpdateCompetence } from "../actions";
-import { ICompetence, competencyReducer } from "./competencies";
+import { ICompetence } from "./competencies";
+import { selectedEmployeeReducer } from './selectedEmployee';
+import { allEmployeesReducer } from './allEmployees';
 
 
 
@@ -10,68 +13,35 @@ export interface IEmployee {
 	competencies: ICompetence[];
 }
 
+export interface IEmployees {
+	allEmployees: IEmployee[];
+	selected: IEmployee | null;
+}
+
 export type Action =
 	| IAddEmployee
 	| IUpdateEmployee
 	| IAddCompetence
 	| IDeleteCompetence
-	| IUpdateCompetence;
+	| IUpdateCompetence
+	| ISelectEmployee;
 
-export function employeesReducer(employees: IEmployee[] = [], action: Action): IEmployee[] {
+const initialState: IEmployees = {
+	allEmployees: [],
+	selected: null
+};
+
+export function employees(state: IEmployees = initialState, action: Action): IEmployees {
 	switch (action.type) {
-		case ActionTypes.AddEmployee:
-			return [...employees, {
-				id: (employees.length > 0) ? employees[employees.length - 1].id + 1 : 1,
-				name: action.payload.name,
-				totalYearsExperience: action.payload.totalYearsExperience,
-				competencies: []
-			}];
-		case ActionTypes.UpdateEmployee:
-			return employees.map((employee) => {
-				if (employee.id !== action.payload.id) {
-					return employee;
-				}
-
-				return {
-					...employee,
-					name: action.payload.name,
-					totalYearsExperience: action.payload.totalYearsExperience
-				};
-			});
-		case ActionTypes.AddCompetence: 
-			return employees.map((employee) => {
-				if (employee.id !== action.payload.userId) {
-					return employee;
-				}
-				
-				return {
-					...employee,
-					competencies: competencyReducer(employee.competencies, action)
-				};
-			});
-		case ActionTypes.DeleteCompetence: 
-			return employees.map((employee) => {
-				if (employee.id !== action.payload.userId) {
-					return employee;
-				}
-				
-				return {
-					...employee,
-					competencies: competencyReducer(employee.competencies, action)
-				};
-			});
-		case ActionTypes.UpdateCompetence:
-			return employees.map((employee) => {
-				if (employee.id !== action.payload.userId) {
-					return employee;
-				}
-				
-				return {
-					...employee,
-					competencies: competencyReducer(employee.competencies, action)
-				};
-			});
+		case ActionTypes.SelectEmployee:
+			return {
+				...state,
+				selected: selectedEmployeeReducer(state, action)
+			};
 		default:
-			return employees;
+			return {
+				...state,
+				allEmployees: allEmployeesReducer(state.allEmployees, action)
+			};
 	}
 }

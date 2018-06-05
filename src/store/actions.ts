@@ -1,6 +1,7 @@
 export enum ActionTypes {
 	AddEmployee = "ADD_EMPLOYEE",
 	UpdateEmployee = "UPDATE_EMPLOYEE",
+	SelectEmployee = "SELECT_EMPLOYEE",
 	AddCompetence = "ADD_COMPETENCE",
 	DeleteCompetence = "DELETE_COMPETENCE",
 	UpdateCompetence = "UPDATE_COMPETENCE",
@@ -43,6 +44,23 @@ export function updateEmployee(id: number, name: string, totalYearsExperience: n
 		}
 	};
 }
+
+export interface ISelectEmployee {
+	type: ActionTypes.SelectEmployee;
+	payload: {
+		id: number
+	};
+}
+
+export function selectEmployee(id: number): ISelectEmployee {
+	return {
+		type: ActionTypes.SelectEmployee,
+		payload: { 
+			id
+		}
+	};
+}
+
 
 export interface IAddCompetence {
 	type: ActionTypes.AddCompetence;

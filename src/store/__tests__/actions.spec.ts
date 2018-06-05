@@ -1,4 +1,5 @@
-import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, addCompetence, IAddCompetence, IDeleteCompetence, deleteCompetence } from "../actions";
+import { ISelectEmployee } from './../actions';
+import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, addCompetence, IAddCompetence, IDeleteCompetence, deleteCompetence, selectEmployee } from "../actions";
 
 describe('actions', () => {
 	describe('addEmployee', () => {
@@ -39,6 +40,23 @@ describe('actions', () => {
 					id: employee.id,
 					name: employee.name,
 					totalYearsExperience: employee.totalYearsExperience
+				}
+			});
+		});
+	});
+
+	describe('selectEmployee', () => {
+		it('should create an update employee object', () => {
+			const employee = {
+				id: 1
+			};
+			const selectEmployeeAction: ISelectEmployee = selectEmployee(
+				employee.id
+			);
+			expect(selectEmployeeAction).toEqual({
+				type: ActionTypes.SelectEmployee,
+				payload: {
+					id: employee.id
 				}
 			});
 		});

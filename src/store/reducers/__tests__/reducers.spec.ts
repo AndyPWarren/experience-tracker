@@ -1,8 +1,9 @@
 import * as deepFreeze from 'deep-freeze';
 import {
-	IEmployee, employeesReducer
+	IEmployee
 } from '../employees';
 import { addEmployee, updateEmployee, addCompetence, deleteCompetence, updateCompetence } from '../../actions';
+import { allEmployeesReducer } from '../allEmployees';
 
 describe('employee reducer', () => {
 	describe('add employee reducer', () => {
@@ -20,7 +21,7 @@ describe('employee reducer', () => {
 				competencies: []
 			};
 			deepFreeze(oldState);
-			const newState = employeesReducer(oldState, addEmployee('barbra', 3));
+			const newState = allEmployeesReducer(oldState, addEmployee('barbra', 3));
 			expect(newState).toEqual([...oldState, expectedEmployee]);
 		});
 
@@ -31,12 +32,12 @@ describe('employee reducer', () => {
 				totalYearsExperience: 5,
 				competencies: []
 			};
-			const newState = employeesReducer([], addEmployee('dave smith', 5));
+			const newState = allEmployeesReducer([], addEmployee('dave smith', 5));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 
 		it('should set the blank state if no state exists', () => {
-			const newState = employeesReducer([], updateEmployee(1, 'fake', 1));
+			const newState = allEmployeesReducer([], updateEmployee(1, 'fake', 1));
 			expect(newState).toEqual([]);
 		});
 	});
@@ -62,7 +63,7 @@ describe('employee reducer', () => {
 				competencies: []
 			};
 			deepFreeze(oldState);
-			const newState = employeesReducer(oldState, updateEmployee(2, 'barbra green', 5));
+			const newState = allEmployeesReducer(oldState, updateEmployee(2, 'barbra green', 5));
 			expect(newState).toEqual([oldState[0], expectedEmployee]);
 		});
 	});
@@ -87,7 +88,7 @@ describe('employee reducer', () => {
 				}]
 			};
 			deepFreeze(oldState);
-			const newState = employeesReducer(oldState, addCompetence(1, 'coding', 1));
+			const newState = allEmployeesReducer(oldState, addCompetence(1, 'coding', 1));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 		
@@ -98,7 +99,7 @@ describe('employee reducer', () => {
 				totalYearsExperience: 5,
 				competencies: []
 			};
-			const newState = employeesReducer([], addEmployee('dave smith', 5));
+			const newState = allEmployeesReducer([], addEmployee('dave smith', 5));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 	});
@@ -123,7 +124,7 @@ describe('employee reducer', () => {
 				competencies: []
 			};
 			deepFreeze(oldState);
-			const newState = employeesReducer(oldState, deleteCompetence(1, 1));
+			const newState = allEmployeesReducer(oldState, deleteCompetence(1, 1));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 	});
@@ -160,7 +161,7 @@ describe('employee reducer', () => {
 				}]
 			};
 			deepFreeze(oldState);
-			const newState = employeesReducer(oldState, updateCompetence(1, 1, 2));
+			const newState = allEmployeesReducer(oldState, updateCompetence(1, 1, 2));
 			expect(newState).toEqual([expectedEmployee]);
 		});
 	});

@@ -1,13 +1,13 @@
 import { combineReducers, createStore, Store } from 'redux';
-import { IEmployee, employeesReducer } from './reducers/employees';
+import { employees, IEmployees } from './reducers/employees';
 
 
 export interface IState {
-	employees: ReadonlyArray<IEmployee>;
+	employees: IEmployees;
 }
 
-const app =  combineReducers<IState>({
-	employees: employeesReducer,
+const app = combineReducers<IState>({
+	employees
 });
 
 export const store: Store = createStore(app);
