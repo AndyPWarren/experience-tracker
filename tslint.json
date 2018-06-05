@@ -5,7 +5,8 @@
     "ordered-imports": false,
     "no-debugger": false,
     "no-console": false,
-    "semicolon": [true, "always"]
+    "semicolon": [true, "always"],
+    "jsx-no-lambda": false
   },
   "linterOptions": {
     "exclude": [
