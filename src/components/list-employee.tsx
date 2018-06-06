@@ -4,7 +4,6 @@ import Employee from './employee';
 
 interface IProps {
 	employees: IEmployee[];
-	onClick: (id: number) => void;
 }
 
 export default class ListEmployees extends React.Component<IProps> {

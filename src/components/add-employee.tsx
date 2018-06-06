@@ -7,6 +7,7 @@ import { ICompetence } from '../store/reducers/competencies';
 import { connect } from 'react-redux';
 import { IAddEmployee, addEmployee } from '../store/actions';
 import { IState } from '../store/store';
+import { Redirect } from 'react-router-dom';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
@@ -24,19 +25,26 @@ interface IAddEmployeeState {
 	name: string;
 	competencies: ICompetence[];
 	total: number;
+	redirect: boolean;
 }
 
 const initialState: IAddEmployeeState = {
 	totalYearsExperience: 0,
 	name: '',
 	competencies: [],
-	total: 0
+	total: 0,
+	redirect: false
 };
 
 class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IAddEmployeeState> {
 	public state: IAddEmployeeState = initialState;
 
 	public render() {
+		if (this.state.redirect === true) {
+			return (
+				<Redirect to={'/'} />
+			);
+		}
 		return (
 			<form onSubmit={(e) => this.onSubmit(e)}>
 				<h3>Enter employee details</h3>
@@ -95,7 +103,15 @@ class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IA
 				/>
 				<Competencies competencies={this.state.competencies} />
 				<br />
-				<Button variant="raised" color="primary" type="submit">Add employee</Button>
+				<Button variant="raised" color="primary" type="submit">Save employee</Button>
+				<br />
+				<Button 
+					variant="raised"
+					color="secondary"
+					type="button"
+					onClick={() => this.redirect()}
+					>
+					Cancel</Button>
 			</form>
 		);
 	}
@@ -114,6 +130,11 @@ class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IA
 			this.state.competencies
 		);
 		this.setState(initialState);
+		this.redirect();
+	}
+
+	private redirect() {
+		this.setState({redirect: true});
 	}
 }
 
