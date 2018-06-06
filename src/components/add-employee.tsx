@@ -4,25 +4,37 @@ import TextField from '@material-ui/core/TextField';
 import Competencies from './competencies';
 import AddCompetence from './add-competencies';
 import { ICompetence } from '../store/reducers/competencies';
+import { connect } from 'react-redux';
+import { IAddEmployee, addEmployee } from '../store/actions';
+import { IState } from '../store/store';
 
 interface IProps {
-	onClick: (value: string, years: number, competencies: ICompetence[]) => void;
+	maxSimultaneousCompetencies: number;
 }
 
-interface IState {
+interface IAddEmployeeDispatchProps {
+	addEmployee: (
+		title: string,
+		years: number,
+		competencies: ICompetence[]) => IAddEmployee;
+}
+
+interface IAddEmployeeState {
 	totalYearsExperience: number;
 	name: string;
 	competencies: ICompetence[];
+	total: number;
 }
 
-const initialState: IState = {
+const initialState: IAddEmployeeState = {
 	totalYearsExperience: 0,
 	name: '',
-	competencies: []
+	competencies: [],
+	total: 0
 };
 
-export default class AddEmployee extends React.Component<IProps, IState> {
-	public state: IState = initialState;
+class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IAddEmployeeState> {
+	public state: IAddEmployeeState = initialState;
 
 	public render() {
 		return (
@@ -53,8 +65,10 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 					}}
 					margin="normal"
 				/>
-				<AddCompetence 
+				<AddCompetence
+					total={this.state.total}
 					maxYears={this.state.totalYearsExperience}
+					maxSimultaneousCompetencies={this.props.maxSimultaneousCompetencies}
 					onClick={(newCompetency) => {
 						let newId = 1;
 						if (this.state.competencies.length > 0) {
@@ -68,9 +82,14 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 								title: newCompetency.title
 							}
 						];
+						const total: number = competencies
+							.map((c) => c.yearsExperience)
+							.reduce((a, b) => a + b);
+
 						this.setState({
 							...this.state,
-							competencies
+							competencies,
+							total
 						});
 					}}
 				/>
@@ -89,7 +108,7 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 
 	private onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		this.props.onClick(
+		this.props.addEmployee(
 			this.state.name,
 			this.state.totalYearsExperience,
 			this.state.competencies
@@ -97,3 +116,15 @@ export default class AddEmployee extends React.Component<IProps, IState> {
 		this.setState(initialState);
 	}
 }
+
+export default connect(
+	(state: IState) => {
+		const props: IProps = {
+			maxSimultaneousCompetencies: state.maxSimultaneousCompetencies
+		};
+		return props;
+	},
+ 	{
+		addEmployee
+	}
+)(AddEmployee);

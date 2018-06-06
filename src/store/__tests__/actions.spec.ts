@@ -1,4 +1,4 @@
-import { ISelectEmployee } from './../actions';
+import { ISelectEmployee, updateMaxSimCompetencies, IUpdateMaxSimCompetencies } from './../actions';
 import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, addCompetence, IAddCompetence, IDeleteCompetence, deleteCompetence, selectEmployee } from "../actions";
 
 describe('actions', () => {
@@ -132,5 +132,19 @@ describe('actions', () => {
 			});
 		});
 	});
+
+	describe('updateMaxSimCompetencies', () => {
+		it('should create an update max simultaneous object', () => {
+			const payload = {
+				value: 4
+			};
+			const updateMaxSimCompetenciesAction: IUpdateMaxSimCompetencies = updateMaxSimCompetencies(
+				payload.value
+			);
+			expect(updateMaxSimCompetenciesAction).toEqual({
+				type: ActionTypes.UpdateMaxSimCompetencies,
+				payload
+			});
+		});
+	});
 });
- 

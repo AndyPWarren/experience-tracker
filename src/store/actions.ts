@@ -7,6 +7,7 @@ export enum ActionTypes {
 	AddCompetence = "ADD_COMPETENCE",
 	DeleteCompetence = "DELETE_COMPETENCE",
 	UpdateCompetence = "UPDATE_COMPETENCE",
+	UpdateMaxSimCompetencies = "UPDATE_MAX_SIMULTANEOUS_COMPETENCIES",
 }
 
 export interface IAddEmployee {
@@ -123,6 +124,22 @@ export function updateCompetence(userId: number, id: number, yearsExperience: nu
 			userId,
 			id,
 			yearsExperience
+		}
+	};
+}
+
+export interface IUpdateMaxSimCompetencies {
+	type: ActionTypes.UpdateMaxSimCompetencies;
+	payload: {
+		value: number
+	};
+}
+
+export function updateMaxSimCompetencies(value: number): IUpdateMaxSimCompetencies {
+	return {
+		type: ActionTypes.UpdateMaxSimCompetencies,
+		payload: { 
+			value
 		}
 	};
 }

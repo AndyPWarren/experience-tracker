@@ -9,7 +9,8 @@ describe('store', () => {
 			employees: {
 				allEmployees: [],
 				selected: null
-			}
+			},
+			maxSimultaneousCompetencies: 3
 		});
 	});
 
