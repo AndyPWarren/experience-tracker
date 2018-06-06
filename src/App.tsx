@@ -6,7 +6,6 @@ import AddEmployee from './components/add-employee';
 import ListEmployees from './components/list-employee';
 import { IState } from './store/store';
 import { IEmployee } from './store/reducers/employees';
-import Employee from './components/employee';
 
 interface IProps {
   employees: IEmployee[];
@@ -17,6 +16,7 @@ interface IAppDispatchProps {
   updateEmployee: (id: number) => IUpdateEmployee;
   selectEmployee: (id: number) => ISelectEmployee;
 }
+
 class App extends React.Component<IProps & IAppDispatchProps> {
   public render() {
     return (
@@ -27,13 +27,6 @@ class App extends React.Component<IProps & IAppDispatchProps> {
         <ListEmployees 
           employees={this.props.employees}
           onClick={this.props.selectEmployee} />
-        
-        {this.props.selectedEmployee && 
-        <div>
-          <h3>Selected Employee</h3>
-          <p><Employee employee={this.props.selectedEmployee}/></p>
-        </div>
-        }
       </div>
     );
   }

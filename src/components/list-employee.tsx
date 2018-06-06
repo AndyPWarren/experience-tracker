@@ -10,13 +10,13 @@ interface IProps {
 export default class ListEmployees extends React.Component<IProps> {
 	public render() {
 		return (
-			<ul>
+			<div className="cards-container">
 				{this.props.employees.map(((employee) =>
-					<li key={employee.id} onClick={() => this.props.onClick(employee.id)}>
+					<div className="card" key={employee.id}>
 						<Employee employee={employee} />
-					</li>
+					</div>
 				))}
-			</ul>
+			</div>
 		);
 	}
 }
