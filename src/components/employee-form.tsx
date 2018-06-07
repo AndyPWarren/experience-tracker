@@ -10,6 +10,7 @@ interface IProps {
 	maxSimultaneousCompetencies: number;
 	employee: IEmployee | null;
 	onSubmit: (name: string, totalYears: number, competencies: ICompetence[]) => void;
+	previousCompetencies: string[];
 }
 
 interface IAddEmployeeState {
@@ -90,6 +91,7 @@ export default class EmployeeForm extends React.Component<IProps, IAddEmployeeSt
 							competencies
 						});
 					}}
+					previousCompetencies={this.props.previousCompetencies}
 				/>
 				<br />
 				<Button variant="raised" color="primary" type="submit">Save employee</Button>

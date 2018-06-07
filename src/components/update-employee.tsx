@@ -46,6 +46,7 @@ class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps>
 								competencies
 							);
 						}}
+						previousCompetencies={this.getPreviousCompetencies()}
 					/>
 				);
 			}
@@ -64,8 +65,23 @@ class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps>
 						competencies
 					);
 				}}
+				previousCompetencies={this.getPreviousCompetencies()}
 			/>
 		);
+	}
+	private getPreviousCompetencies(): string[] {
+		if (this.props.employees.length === 0) {
+			return [];
+		}
+		return this.props.employees
+			.map((employee) => {
+				return employee.competencies.map((c) => c.title);
+			})
+			.reduce((a, b) => [...a, ...b])
+			.sort()
+			.filter((item, i, arr) => {
+				return !i || item !== arr[i - 1];
+			});
 	}
 }
 

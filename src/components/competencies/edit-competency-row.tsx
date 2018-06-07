@@ -3,6 +3,7 @@ import { ICompetence } from '../../store/reducers/employees';
 import { TableRow, TableCell, TextField, IconButton } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
+import IntegrationAutosuggest from '../autosuggest';
 
 interface IProps {
 	competency: ICompetence;
@@ -11,6 +12,7 @@ interface IProps {
 	maxYears: number;
 	total: number;
 	maxSimultaneousCompetencies: number;
+	previousCompetencies: string[];
 }
 
 interface IState {
@@ -24,36 +26,25 @@ export default class EditCompetencyRow extends React.Component<IProps, IState> {
 		error: ''
 	};
 
-	private titleInput: HTMLInputElement;
-
-	public componentDidMount() {
-		this.titleInput.focus();
-	}
-
 	public render() {
 		const { competency } = this.props;
 		return (
 			<TableRow key={competency.id}>
-				<TableCell component="th" scope="row">
-					<TextField
-						id="title"
-						label="Title"
-						value={this.state.competency.title}
-						inputProps={{ref: (input: HTMLInputElement) => this.titleInput = input} }
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-							this.setState({
-								...this.state,
-								competency: this.updateTitle(event.target.value)
-							})
-						}
-						margin="normal"
-					/>
+			<TableCell>
+				<IntegrationAutosuggest
+					suggestions={this.props.previousCompetencies} 
+					value={this.state.competency.title}
+					placeholderText={'Enter competency'}
+					changeHandler={(event: string) => this.setState({
+						...this.state,
+						competency: this.updateTitle(event)
+					})}
+				/>
 				</TableCell>
 				<TableCell numeric={true}>
 				<TextField
-					style={{width: '130px'}}
+					style={{width: '100%'}}
 					id="years"
-					label="Years experience"
 					value={this.state.competency.yearsExperience}
 					inputProps={{min: 0, max: this.props.maxYears}}
 					onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +77,7 @@ export default class EditCompetencyRow extends React.Component<IProps, IState> {
 					<p style={{'color': 'red'}}>{this.state.error}</p>
 				}
 				</TableCell>
-				<TableCell style={{ width: "100px" }}>
+				<TableCell>
 					<IconButton color="primary"
 						onClick={() => this.props.completeHandler(this.state.competency)}
 						disabled={!!this.state.error || !this.state.competency.title || this.state.competency.yearsExperience === 0}
