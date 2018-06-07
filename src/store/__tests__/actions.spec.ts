@@ -1,5 +1,5 @@
 import { updateMaxSimCompetencies, IUpdateMaxSimCompetencies } from './../actions';
-import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, addCompetence, IAddCompetence, IDeleteCompetence, deleteCompetence } from "../actions";
+import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee } from "../actions";
 
 describe('actions', () => {
 	describe('addEmployee', () => {
@@ -54,70 +54,6 @@ describe('actions', () => {
 					name: employee.name,
 					totalYearsExperience: employee.totalYearsExperience,
 					competencies: employee.competencies
-				}
-			});
-		});
-	});
-
-	describe('addCompetence', () => {
-		it('should create an add competence object', () => {
-			const competence = {
-				userId: 1,
-				title: 'coding',
-				yearsExperience: 5
-			};
-			const addCompetenceAction: IAddCompetence = addCompetence(
-				competence.userId,
-				competence.title,
-				competence.yearsExperience
-			);
-			expect(addCompetenceAction).toEqual({
-				type: ActionTypes.AddCompetence,
-				payload: {
-					userId: competence.userId,
-					title: competence.title,
-					yearsExperience: competence.yearsExperience
-				}
-			});
-		});
-	});
-
-	describe('deleteCompetence', () => {
-		it('should create an delete competence object', () => {
-			const competence = {
-				userId: 1,
-				id: 1
-			};
-			const deleteCompetenceAction: IDeleteCompetence = deleteCompetence(
-				competence.userId,
-				competence.id
-			);
-			expect(deleteCompetenceAction).toEqual({
-				type: ActionTypes.DeleteCompetence,
-				payload: {
-					userId: competence.userId,
-					id: competence.id
-				}
-			});
-		});
-	});
-
-	describe('updateCompetence', () => {
-		it('should create an update competence object', () => {
-			const payload = {
-				userId: 1,
-				id: 1,
-				yearsExperience: 4
-			};
-			const deleteCompetenceAction: IDeleteCompetence = deleteCompetence(
-				payload.userId,
-				payload.id
-			);
-			expect(deleteCompetenceAction).toEqual({
-				type: ActionTypes.DeleteCompetence,
-				payload: {
-					userId: payload.userId,
-					id: payload.id
 				}
 			});
 		});

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { ICompetence } from '../store/reducers/competencies';
+import { ICompetence } from '../store/reducers/employees';
 import { Redirect } from 'react-router-dom';
 import { IEmployee } from '../store/reducers/employees';
 import UpdateCompetenciesTable from './competencies/update-competencies-table';

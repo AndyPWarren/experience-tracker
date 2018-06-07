@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICompetence } from '../../store/reducers/competencies';
+import { ICompetence } from '../../store/reducers/employees';
 import { TableRow, TableCell, TextField, IconButton } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Paper, Table, TableHead, TableRow, TableCell, TableBody, TableFooter, IconButton } from '@material-ui/core';
-import { ICompetence } from '../../store/reducers/competencies';
+import { ICompetence } from '../../store/reducers/employees';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';

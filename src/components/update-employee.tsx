@@ -4,7 +4,7 @@ import { IEmployee } from '../store/reducers/employees';
 import { connect } from 'react-redux';
 import { IState } from '../store/store';
 import EmployeeForm from './employee-form';
-import { ICompetence } from '../store/reducers/competencies';
+import { ICompetence } from '../store/reducers/employees';
 import { IAddEmployee, addEmployee, updateEmployee, IUpdateEmployee } from '../store/actions';
 
 interface IParams {

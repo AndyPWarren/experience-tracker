@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICompetence } from '../../store/reducers/competencies';
+import { ICompetence } from '../../store/reducers/employees';
 import Paper from '@material-ui/core/Paper/Paper';
 import Table from '@material-ui/core/Table/Table';
 import TableHead from '@material-ui/core/TableHead/TableHead';
