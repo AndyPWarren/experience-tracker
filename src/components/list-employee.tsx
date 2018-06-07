@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IEmployee } from '../store/reducers/employees';
 import Employee from './employee';
-import { deleteEmployee } from '../store/actions';
+import { deleteEmployee, updateAlert, IAlertPayload, IAlertDialogue } from '../store/actions';
 import { connect } from 'react-redux';
 import { IState } from '../store/store';
 
@@ -11,6 +11,7 @@ interface IProps {
 
 interface IDispatchProps {
 	deleteEmployee: (id: number) => void;
+	updateAlert: (Message: IAlertPayload) => IAlertDialogue;
 }
 
 class ListEmployees extends React.Component<IProps & IDispatchProps> {
@@ -21,7 +22,13 @@ class ListEmployees extends React.Component<IProps & IDispatchProps> {
 					<div className="card" key={employee.id}>
 						<Employee 
 							employee={employee}
-							deleteClickHandler={(id: number) => this.props.deleteEmployee(id) }
+							deleteClickHandler={(id: number) => {
+								this.props.updateAlert({
+									messageTitle: 'Delete Employee',
+									messageContent: `Are you sure you want to delete employee: ${employee.name}?`,
+									action: () => this.props.deleteEmployee(employee.id)
+								});
+							}}
 						/>
 					</div>
 				))}
@@ -37,6 +44,7 @@ export default connect(
 		};
 		return props;
 	}, {
-		deleteEmployee
+		deleteEmployee,
+		updateAlert
 	}
 )(ListEmployees);

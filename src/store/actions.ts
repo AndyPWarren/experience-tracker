@@ -6,6 +6,8 @@ export enum ActionTypes {
 	SelectEmployee = "SELECT_EMPLOYEE",
 	DeleteEmployee = "DELETE_EMPLOYEE",
 	UpdateMaxSimCompetencies = "UPDATE_MAX_SIMULTANEOUS_COMPETENCIES",
+	UpdateAlert = "UPDATE_ALERT",
+	ClearAlert = "CLEAR_ALERT",
 }
 
 export interface IAddEmployee {
@@ -86,5 +88,33 @@ export function updateMaxSimCompetencies(value: number): IUpdateMaxSimCompetenci
 		payload: { 
 			value
 		}
+	};
+}
+
+export interface IAlertPayload {
+	messageTitle: string;
+	messageContent: string;
+	action: () => void;
+}
+
+export interface IAlertDialogue {
+	type: ActionTypes.UpdateAlert;
+	payload: IAlertPayload;
+}
+
+export function updateAlert(payload: IAlertPayload): IAlertDialogue {
+	return {
+		type: ActionTypes.UpdateAlert,
+		payload
+	};
+}
+
+export interface IClearDialogue {
+	type: ActionTypes.ClearAlert;
+}
+
+export function clearAlert(): IClearDialogue {
+	return {
+		type: ActionTypes.ClearAlert
 	};
 }

@@ -1,12 +1,14 @@
-import { store } from "../store";
-import { addEmployee } from "../actions";
+import { IAlertPayload } from './../actions';
+import { store, IState } from "../store";
+import { addEmployee, updateAlert } from "../actions";
 
 describe('store', () => {
 	it('should set initial state', () => {
 		const state = store.getState();
 		expect(state).toEqual({
 			employees: [],
-			maxSimultaneousCompetencies: 3
+			maxSimultaneousCompetencies: 3,
+			alert: null
 		});
 	});
 
@@ -19,5 +21,16 @@ describe('store', () => {
 			totalYearsExperience: 3,
 			competencies: []
 		}]);
+	});
+
+	it('should update the alert', () => {
+		const newDialogue: IAlertPayload = {
+			messageTitle: 'title',
+			messageContent: 'content',
+			action: () => console.log
+		};
+		store.dispatch(updateAlert(newDialogue));
+		const state: IState = store.getState();
+		expect(state.alert).toEqual(newDialogue);
 	});
 });

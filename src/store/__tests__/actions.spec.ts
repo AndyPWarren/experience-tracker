@@ -1,5 +1,5 @@
-import { updateMaxSimCompetencies, IUpdateMaxSimCompetencies, IDeleteEmployee, deleteEmployee } from './../actions';
-import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee } from "../actions";
+import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, IDeleteEmployee, deleteEmployee, IUpdateMaxSimCompetencies, updateMaxSimCompetencies, IAlertPayload, IAlertDialogue, updateAlert, clearAlert } from "../actions";
+
 
 describe('actions', () => {
 	describe('addEmployee', () => {
@@ -82,6 +82,31 @@ describe('actions', () => {
 			expect(updateMaxSimCompetenciesAction).toEqual({
 				type: ActionTypes.UpdateMaxSimCompetencies,
 				payload
+			});
+		});
+	});
+
+	describe('updateAlert', () => {
+		it('should create an update alert object', () => {
+			const payload: IAlertPayload = {
+				messageTitle: 'title',
+				messageContent: 'content',
+				action: () => console.log
+			};
+			const updateDialogueAction: IAlertDialogue = updateAlert(
+				payload
+			);
+			expect(updateDialogueAction).toEqual({
+				type: ActionTypes.UpdateAlert,
+				payload
+			});
+		});
+	});
+
+	describe('clearAlert', () => {
+		it('should create a clear alert object', () => {
+			expect(clearAlert()).toEqual({
+				type: ActionTypes.ClearAlert
 			});
 		});
 	});
