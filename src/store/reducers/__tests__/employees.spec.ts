@@ -2,7 +2,7 @@ import * as deepFreeze from 'deep-freeze';
 import {
 	IEmployee
 } from '../employees';
-import { addEmployee, updateEmployee } from '../../actions';
+import { addEmployee, updateEmployee, deleteEmployee } from '../../actions';
 import { employees } from '../employees';
 
 describe('employee reducer', () => {
@@ -64,6 +64,29 @@ describe('employee reducer', () => {
 			deepFreeze(oldState);
 			const newState = employees(oldState, updateEmployee(2, 'barbra green', 5, expectedEmployee.competencies));
 			expect(newState).toEqual([oldState[0], expectedEmployee]);
+		});
+	});
+
+	describe('delete employee', () => {
+		it('should delete the employee', () => {
+			const oldState: IEmployee[] = [{
+				id: 1,
+				name: 'dave smith',
+				totalYearsExperience: 5,
+				competencies: []
+			}, {
+				id: 2,
+				name: 'barbra',
+				totalYearsExperience: 3,
+				competencies: []
+			}];
+
+			const expectedState: IEmployee[] = [
+				oldState[1]
+			];
+			deepFreeze(oldState);
+			const newState = employees(oldState, deleteEmployee(1);
+			expect(newState).toEqual(expectedState);
 		});
 	});
 });

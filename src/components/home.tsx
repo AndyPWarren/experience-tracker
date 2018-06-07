@@ -1,16 +1,15 @@
 import * as React from 'react';
 import ListEmployees from './list-employee';
-import { IEmployee } from '../store/reducers/employees';
-import { connect } from 'react-redux';
-import { IState } from '../store/store';
 import { Link } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
+import { IState } from '../store/store';
+import { connect } from 'react-redux';
+import { IEmployee } from '../store/reducers/employees';
 
 interface IProps {
 	employees: IEmployee[];
 }
-
 class Home extends React.Component<IProps> {
 	public render() {
 		return (
@@ -29,8 +28,7 @@ class Home extends React.Component<IProps> {
 				}
 				{
 					this.props.employees.length > 0 &&
-					<ListEmployees
-						employees={this.props.employees} />
+					<ListEmployees />
 				}
 			</main>
 		);
@@ -39,7 +37,6 @@ class Home extends React.Component<IProps> {
 
 export default connect(
 	(state: IState) => {
-		console.log(state);
 		const props: IProps = {
 			employees: state.employees
 		};

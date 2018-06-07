@@ -1,4 +1,4 @@
-import { updateMaxSimCompetencies, IUpdateMaxSimCompetencies } from './../actions';
+import { updateMaxSimCompetencies, IUpdateMaxSimCompetencies, IDeleteEmployee, deleteEmployee } from './../actions';
 import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee } from "../actions";
 
 describe('actions', () => {
@@ -54,6 +54,18 @@ describe('actions', () => {
 					name: employee.name,
 					totalYearsExperience: employee.totalYearsExperience,
 					competencies: employee.competencies
+				}
+			});
+		});
+	});
+
+	describe('deleteEmployee', () => {
+		it('should create an delete employee object', () => {
+			const deleteEmployeeAction: IDeleteEmployee  = deleteEmployee(1);
+			expect(deleteEmployeeAction).toEqual({
+				type: ActionTypes.DeleteEmployee,
+				payload: {
+					id: 1,
 				}
 			});
 		});

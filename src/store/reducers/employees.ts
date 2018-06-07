@@ -1,4 +1,4 @@
-import { ActionTypes, IAddEmployee, IUpdateEmployee } from "../actions";
+import { ActionTypes, IAddEmployee, IUpdateEmployee, IDeleteEmployee } from "../actions";
 
 export interface ICompetence {
 	id: number;
@@ -15,7 +15,8 @@ export interface IEmployee {
 
 export type Action =
 	| IAddEmployee
-	| IUpdateEmployee;
+	| IUpdateEmployee
+	| IDeleteEmployee;
 
 export function employees(state: IEmployee[] = [], action: Action): IEmployee[] {
 	switch (action.type) {
@@ -39,6 +40,8 @@ export function employees(state: IEmployee[] = [], action: Action): IEmployee[] 
 					competencies: [...action.payload.competencies]
 				};
 			});
+		case ActionTypes.DeleteEmployee:
+			return state.filter((employee) => employee.id !== action.payload.id);
 		default:
 			return state;
 	}

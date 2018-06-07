@@ -18,13 +18,13 @@ describe('Employee Component', () => {
 
 	it('renders without crashing', () => {
 		const div = document.createElement('div');
-		ReactDOM.render(<Employee employee={mockEmployee}/>, div);
+		ReactDOM.render(<Employee employee={mockEmployee} deleteClickHandler={(id) => console.log}/>, div);
 		ReactDOM.unmountComponentAtNode(div);
 	});
 	
 	it('renders correctly', () => {
 		const tree = renderer
-			.create(<Employee employee={mockEmployee}/>)
+			.create(<Employee employee={mockEmployee} deleteClickHandler={(id) => console.log}/>)
 			.toJSON();
 		expect(tree).toMatchSnapshot();
 	});

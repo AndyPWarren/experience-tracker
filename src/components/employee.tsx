@@ -42,6 +42,7 @@ const styles = (theme: any) => ({
 interface IProps {
 	classes: any;
 	employee: IEmployee;
+	deleteClickHandler: (id: number) => void;
 }
 
 interface IState {
@@ -78,7 +79,7 @@ class EmployeeCard extends React.Component<IProps, IState> {
 							</IconButton>
 						</Link>
 						<IconButton
-							onClick={() => this.deleteClickHandler()}
+							onClick={() => this.props.deleteClickHandler(this.props.employee.id)}
 							aria-label="Edit">
 							<DeleteIcon />
 						</IconButton>
@@ -106,10 +107,6 @@ class EmployeeCard extends React.Component<IProps, IState> {
 	}
 	private handleExpandClick() {
 		this.setState({ expanded: !this.state.expanded });
-	}
-
-	private deleteClickHandler() {
-		console.log('delete clicked');
 	}
 }
 
