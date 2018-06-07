@@ -73,7 +73,7 @@ export default connect(
 	(state: IState) => {
 		return {
 			maxSimultaneousCompetencies: state.maxSimultaneousCompetencies,
-			employees: state.employees.allEmployees
+			employees: state.employees
 		};
 	},
 	{

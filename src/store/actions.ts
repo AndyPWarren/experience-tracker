@@ -59,23 +59,6 @@ export function updateEmployee(
 	};
 }
 
-export interface ISelectEmployee {
-	type: ActionTypes.SelectEmployee;
-	payload: {
-		id: number
-	};
-}
-
-export function selectEmployee(id: number): ISelectEmployee {
-	return {
-		type: ActionTypes.SelectEmployee,
-		payload: { 
-			id
-		}
-	};
-}
-
-
 export interface IAddCompetence {
 	type: ActionTypes.AddCompetence;
 	payload: {

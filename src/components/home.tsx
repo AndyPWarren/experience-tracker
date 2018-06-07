@@ -41,7 +41,7 @@ export default connect(
 	(state: IState) => {
 		console.log(state);
 		const props: IProps = {
-			employees: state.employees.allEmployees
+			employees: state.employees
 		};
 		return props;
 	}

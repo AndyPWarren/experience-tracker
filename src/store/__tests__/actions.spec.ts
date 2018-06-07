@@ -1,5 +1,5 @@
-import { ISelectEmployee, updateMaxSimCompetencies, IUpdateMaxSimCompetencies } from './../actions';
-import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, addCompetence, IAddCompetence, IDeleteCompetence, deleteCompetence, selectEmployee } from "../actions";
+import { updateMaxSimCompetencies, IUpdateMaxSimCompetencies } from './../actions';
+import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, addCompetence, IAddCompetence, IDeleteCompetence, deleteCompetence } from "../actions";
 
 describe('actions', () => {
 	describe('addEmployee', () => {
@@ -54,23 +54,6 @@ describe('actions', () => {
 					name: employee.name,
 					totalYearsExperience: employee.totalYearsExperience,
 					competencies: employee.competencies
-				}
-			});
-		});
-	});
-
-	describe('selectEmployee', () => {
-		it('should create an update employee object', () => {
-			const employee = {
-				id: 1
-			};
-			const selectEmployeeAction: ISelectEmployee = selectEmployee(
-				employee.id
-			);
-			expect(selectEmployeeAction).toEqual({
-				type: ActionTypes.SelectEmployee,
-				payload: {
-					id: employee.id
 				}
 			});
 		});

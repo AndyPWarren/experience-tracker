@@ -1,10 +1,10 @@
 import { combineReducers, createStore, Store } from 'redux';
-import { employees, IEmployees } from './reducers/employees';
+import { employees, IEmployee } from './reducers/employees';
 import { maxSimultaneousCompetencies } from './reducers/maxCompetencies';
 
 
 export interface IState {
-	employees: IEmployees;
+	employees: IEmployee[];
 	maxSimultaneousCompetencies: number;
 }
 
