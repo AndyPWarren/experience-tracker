@@ -83,6 +83,7 @@ class EmployeeCard extends React.Component<IProps, IState> {
 							aria-label="Edit">
 							<DeleteIcon />
 						</IconButton>
+						{this.props.employee.competencies.length > 0 &&
 						<IconButton
 							className={classnames(classes.expand, {
 								[classes.expandOpen]: this.state.expanded,
@@ -93,6 +94,7 @@ class EmployeeCard extends React.Component<IProps, IState> {
 						>
 							<ExpandMoreIcon />
 						</IconButton>
+						}
 					</CardActions>
 					<Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
 						<CardContent>
