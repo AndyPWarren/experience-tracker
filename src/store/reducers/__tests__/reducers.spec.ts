@@ -35,11 +35,6 @@ describe('employee reducer', () => {
 			const newState = allEmployeesReducer([], addEmployee('dave smith', 5, []));
 			expect(newState).toEqual([expectedEmployee]);
 		});
-
-		it('should set the blank state if no state exists', () => {
-			const newState = allEmployeesReducer([], updateEmployee(1, 'fake', 1));
-			expect(newState).toEqual([]);
-		});
 	});
 
 	describe('update employee', () => {
@@ -60,10 +55,14 @@ describe('employee reducer', () => {
 				id: 2,
 				name: 'barbra green',
 				totalYearsExperience: 5,
-				competencies: []
+				competencies: [{
+					id: 1,
+					title: 'coding',
+					yearsExperience: 1
+				}]
 			};
 			deepFreeze(oldState);
-			const newState = allEmployeesReducer(oldState, updateEmployee(2, 'barbra green', 5));
+			const newState = allEmployeesReducer(oldState, updateEmployee(2, 'barbra green', 5, expectedEmployee.competencies));
 			expect(newState).toEqual([oldState[0], expectedEmployee]);
 		});
 	});

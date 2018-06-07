@@ -14,7 +14,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IEmployee } from '../store/reducers/employees';
-import Competencies from './competencies';
+import CompetenciesViewTable from './competencies/competencies-view-table';
+import { Link } from 'react-router-dom';
 
 const styles = (theme: any) => ({
 	card: {
@@ -70,11 +71,12 @@ class EmployeeCard extends React.Component<IProps, IState> {
 						</Typography>
 					</CardContent>
 					<CardActions className={classes.actions} disableActionSpacing={true}>
-						<IconButton
-							onClick={() => this.editClickHandler()}
-							aria-label="Edit">
-							<EditIcon />
-						</IconButton>
+						<Link to={`/edit-employee/${this.props.employee.id}`}>
+							<IconButton
+								aria-label="Edit">
+								<EditIcon />
+							</IconButton>
+						</Link>
 						<IconButton
 							onClick={() => this.deleteClickHandler()}
 							aria-label="Edit">
@@ -93,7 +95,9 @@ class EmployeeCard extends React.Component<IProps, IState> {
 					</CardActions>
 					<Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
 						<CardContent>
-							<Competencies competencies={this.props.employee.competencies} />
+							<CompetenciesViewTable 
+								competencies={this.props.employee.competencies} 
+								onClick={null}/>
 						</CardContent>
 					</Collapse>
 				</Card>
@@ -102,10 +106,6 @@ class EmployeeCard extends React.Component<IProps, IState> {
 	}
 	private handleExpandClick() {
 		this.setState({ expanded: !this.state.expanded });
-	}
-
-	private editClickHandler() {
-		console.log('edit clicked');
 	}
 
 	private deleteClickHandler() {

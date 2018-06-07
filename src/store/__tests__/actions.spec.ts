@@ -34,19 +34,26 @@ describe('actions', () => {
 			const employee = {
 				id: 1,
 				name: 'dave smith',
-				totalYearsExperience: 5
+				totalYearsExperience: 5,
+				competencies: [{
+					id: 1,
+					yearsExperience: 1,
+					title: 'coding'
+				}]
 			};
 			const updateEmployeeAction: IUpdateEmployee = updateEmployee(
 				employee.id,
 				employee.name,
-				employee.totalYearsExperience
+				employee.totalYearsExperience,
+				employee.competencies
 			);
 			expect(updateEmployeeAction).toEqual({
 				type: ActionTypes.UpdateEmployee,
 				payload: {
 					id: employee.id,
 					name: employee.name,
-					totalYearsExperience: employee.totalYearsExperience
+					totalYearsExperience: employee.totalYearsExperience,
+					competencies: employee.competencies
 				}
 			});
 		});

@@ -20,7 +20,8 @@ export function allEmployeesReducer(allEmployees: IEmployee[] = [], action: Acti
 				return {
 					...employee,
 					name: action.payload.name,
-					totalYearsExperience: action.payload.totalYearsExperience
+					totalYearsExperience: action.payload.totalYearsExperience,
+					competencies: [...action.payload.competencies]
 				};
 			});
 		case ActionTypes.AddCompetence: 

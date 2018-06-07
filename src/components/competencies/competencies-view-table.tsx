@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICompetence } from '../store/reducers/competencies';
+import { ICompetence } from '../../store/reducers/competencies';
 import Paper from '@material-ui/core/Paper/Paper';
 import Table from '@material-ui/core/Table/Table';
 import TableHead from '@material-ui/core/TableHead/TableHead';
@@ -9,9 +9,10 @@ import TableBody from '@material-ui/core/TableBody/TableBody';
 
 interface IProps {
 	competencies: ICompetence[];
+	onClick: ((competency: ICompetence) => void) | null;
 }
 
-export default class Competencies extends React.Component<IProps> {
+export default class CompetenciesViewTable extends React.Component<IProps> {
 	public render() {
 		return (
 			<Paper>
@@ -25,7 +26,12 @@ export default class Competencies extends React.Component<IProps> {
 					<TableBody>
 						{this.props.competencies.map(competency => {
 							return (
-								<TableRow key={competency.id}>
+								<TableRow key={competency.id}	onClick={() => {
+									if (this.props.onClick !== null) {
+										this.props.onClick(competency);
+									}
+								}
+								} >
 									<TableCell component="th" scope="row">
 										{competency.title}
 									</TableCell>

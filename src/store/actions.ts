@@ -39,16 +39,22 @@ export interface IUpdateEmployee {
 		id: number,
 		name: string,
 		totalYearsExperience: number,
+		competencies: ICompetence[]
 	};
 }
 
-export function updateEmployee(id: number, name: string, totalYearsExperience: number): IUpdateEmployee {
+export function updateEmployee(
+	id: number,
+	name: string,
+	totalYearsExperience: number,
+	competencies: ICompetence[]): IUpdateEmployee {
 	return {
 		type: ActionTypes.UpdateEmployee,
 		payload: { 
 			id,
 			name,
-			totalYearsExperience
+			totalYearsExperience,
+			competencies
 		}
 	};
 }

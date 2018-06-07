@@ -1,23 +1,15 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Competencies from './competencies';
-import AddCompetence from './add-competencies';
 import { ICompetence } from '../store/reducers/competencies';
-import { connect } from 'react-redux';
-import { IAddEmployee, addEmployee } from '../store/actions';
-import { IState } from '../store/store';
 import { Redirect } from 'react-router-dom';
+import { IEmployee } from '../store/reducers/employees';
+import UpdateCompetenciesTable from './competencies/update-competencies-table';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
-}
-
-interface IAddEmployeeDispatchProps {
-	addEmployee: (
-		title: string,
-		years: number,
-		competencies: ICompetence[]) => IAddEmployee;
+	employee: IEmployee | null;
+	onSubmit: (name: string, totalYears: number, competencies: ICompetence[]) => void;
 }
 
 interface IAddEmployeeState {
@@ -36,8 +28,23 @@ const initialState: IAddEmployeeState = {
 	redirect: false
 };
 
-class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IAddEmployeeState> {
+export default class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 	public state: IAddEmployeeState = initialState;
+
+	constructor(props: IProps) {
+		super(props);
+	}
+
+	public componentWillMount() {
+		if (this.props.employee) {
+			this.setState({
+				...this.state,
+				name: this.props.employee.name,
+				totalYearsExperience: this.props.employee.totalYearsExperience,
+				competencies: this.props.employee.competencies
+			});
+		}
+	}
 
 	public render() {
 		if (this.state.redirect === true) {
@@ -73,44 +80,26 @@ class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IA
 					}}
 					margin="normal"
 				/>
-				<AddCompetence
-					total={this.state.total}
+				<UpdateCompetenciesTable
+					competencies={this.state.competencies}
 					maxYears={this.state.totalYearsExperience}
 					maxSimultaneousCompetencies={this.props.maxSimultaneousCompetencies}
-					onClick={(newCompetency) => {
-						let newId = 1;
-						if (this.state.competencies.length > 0) {
-							newId = this.state.competencies[this.state.competencies.length - 1].id + 1;
-						}
-						const competencies = [
-							...this.state.competencies,
-							{
-								id: newId,
-								yearsExperience: newCompetency.years,
-								title: newCompetency.title
-							}
-						];
-						const total: number = competencies
-							.map((c) => c.yearsExperience)
-							.reduce((a, b) => a + b);
-
+					updateHandler={(competencies: ICompetence[]) => {
 						this.setState({
 							...this.state,
-							competencies,
-							total
+							competencies
 						});
 					}}
 				/>
-				<Competencies competencies={this.state.competencies} />
 				<br />
 				<Button variant="raised" color="primary" type="submit">Save employee</Button>
 				<br />
-				<Button 
+				<Button
 					variant="raised"
 					color="secondary"
 					type="button"
 					onClick={() => this.redirect()}
-					>
+				>
 					Cancel</Button>
 			</form>
 		);
@@ -124,7 +113,7 @@ class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IA
 
 	private onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		this.props.addEmployee(
+		this.props.onSubmit(
 			this.state.name,
 			this.state.totalYearsExperience,
 			this.state.competencies
@@ -134,18 +123,6 @@ class AddEmployee extends React.Component<IProps & IAddEmployeeDispatchProps, IA
 	}
 
 	private redirect() {
-		this.setState({redirect: true});
+		this.setState({ redirect: true });
 	}
 }
-
-export default connect(
-	(state: IState) => {
-		const props: IProps = {
-			maxSimultaneousCompetencies: state.maxSimultaneousCompetencies
-		};
-		return props;
-	},
- 	{
-		addEmployee
-	}
-)(AddEmployee);
