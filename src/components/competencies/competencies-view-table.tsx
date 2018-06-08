@@ -9,7 +9,6 @@ import TableBody from '@material-ui/core/TableBody/TableBody';
 
 interface IProps {
 	competencies: ICompetence[];
-	onClick: ((competency: ICompetence) => void) | null;
 }
 
 export default class CompetenciesViewTable extends React.Component<IProps> {
@@ -26,12 +25,7 @@ export default class CompetenciesViewTable extends React.Component<IProps> {
 					<TableBody>
 						{this.props.competencies.map(competency => {
 							return (
-								<TableRow key={competency.id}	onClick={() => {
-									if (this.props.onClick !== null) {
-										this.props.onClick(competency);
-									}
-								}
-								} >
+								<TableRow key={competency.id}>
 									<TableCell component="th" scope="row">
 										{competency.title}
 									</TableCell>

@@ -16,6 +16,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { IEmployee } from '../../store/reducers/employees';
 import CompetenciesViewTable from '../competencies/competencies-view-table';
 import { Link } from 'react-router-dom';
+import IconCallMade from '@material-ui/icons/CallMade';
 
 const styles = (theme: Theme) => ({
 	card: {
@@ -58,14 +59,21 @@ class EmployeeCard extends React.Component<IProps, IState> {
 		return (
 			<div>
 				<Card className={classes.card}>
-					<CardHeader
-						avatar={
-							<Avatar aria-label="Recipe" className={classes.avatar}>
-								{this.props.employee.name[0]}
-							</Avatar>
-						}
-						title={this.props.employee.name}
-					/>
+					<Link to={`/employee/${this.props.employee.id}`}>
+						<CardHeader
+							avatar={
+								<Avatar aria-label="Recipe" className={classes.avatar}>
+									{this.props.employee.name[0]}
+								</Avatar>
+							}
+							title={this.props.employee.name}
+							action={
+								<IconButton>
+									<IconCallMade />
+								</IconButton>
+							}
+						/>
+					</Link>
 					<CardContent>
 						<Typography component="p">
 							Total years of experience: {this.props.employee.totalYearsExperience}
@@ -84,23 +92,22 @@ class EmployeeCard extends React.Component<IProps, IState> {
 							<DeleteIcon />
 						</IconButton>
 						{this.props.employee.competencies.length > 0 &&
-						<IconButton
-							className={classnames(classes.expand, {
-								[classes.expandOpen]: this.state.expanded,
-							})}
-							onClick={() => this.handleExpandClick()}
-							aria-expanded={this.state.expanded}
-							aria-label="Show more"
-						>
-							<ExpandMoreIcon />
-						</IconButton>
+							<IconButton
+								className={classnames(classes.expand, {
+									[classes.expandOpen]: this.state.expanded,
+								})}
+								onClick={() => this.handleExpandClick()}
+								aria-expanded={this.state.expanded}
+								aria-label="Show more"
+							>
+								<ExpandMoreIcon />
+							</IconButton>
 						}
 					</CardActions>
 					<Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
 						<CardContent>
-							<CompetenciesViewTable 
-								competencies={this.props.employee.competencies} 
-								onClick={null}/>
+							<CompetenciesViewTable
+								competencies={this.props.employee.competencies} />
 						</CardContent>
 					</Collapse>
 				</Card>
