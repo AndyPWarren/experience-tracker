@@ -1,0 +1,32 @@
+# CI Config
+
+stages:
+  - build
+  - deploy
+
+# Build the static file
+build_static:
+  variables:
+    NODE_ENV: "production"
+  stage: build
+  artifacts:
+    name: "build_static_${CI_BUILD_REF}"
+    expire_in: 1d
+    paths:
+      - build
+  image: node:8.9.4
+  script:
+    - yarn install --production=false
+    - yarn build
+
+# Deploy to Production (S3)
+deploy_prod:
+  stage: deploy
+  image: node:8.9.4
+  only:
+    - master
+  dependencies: 
+    - build_static
+  script:
+    - npm install -g s3-deploy
+    - s3-deploy './build/**' --cwd './build/' --region ${AWS_REGION} --bucket ${AWS_S3_BUCKET_NAME} --invalidate --deleteRemoved
