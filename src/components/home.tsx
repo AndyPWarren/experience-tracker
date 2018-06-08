@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ListEmployees from './list-employee';
+import ListEmployees from './employee/list-employee';
 import { Link } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import { IState } from '../store/store';

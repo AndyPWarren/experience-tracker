@@ -3,19 +3,12 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './components/home';
-import UpdateEmployee from './components/update-employee';
-import AlertManager from './components/alert-manager';
+import UpdateEmployee from './components/employee/update-employee';
+import AlertManager from './components/alert/alert-manager';
 import MainAppBar from './components/app-bar';
 import Admin from './components/admin';
 
-interface IState {
-  open: boolean;
-}
-
-export default class App extends React.Component<{}, IState> {
-  public state: IState = {
-    open: false,
-  };
+export default class App extends React.Component {
   public render() {
     return (
       <Router>

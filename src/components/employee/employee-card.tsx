@@ -13,8 +13,8 @@ import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { IEmployee } from '../store/reducers/employees';
-import CompetenciesViewTable from './competencies/competencies-view-table';
+import { IEmployee } from '../../store/reducers/employees';
+import CompetenciesViewTable from '../competencies/competencies-view-table';
 import { Link } from 'react-router-dom';
 
 const styles = (theme: Theme) => ({

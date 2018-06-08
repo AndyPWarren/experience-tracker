@@ -3,8 +3,8 @@ import { ICompetence } from '../../store/reducers/employees';
 import { TableRow, TableCell, IconButton } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
-import IntegrationAutosuggest from '../autosuggest';
-import NumberInput from '../number-input';
+import IntegrationAutosuggest from '../inputs/autosuggest';
+import NumberInput from '../inputs/number-input';
 
 interface IProps {
 	competency: ICompetence;

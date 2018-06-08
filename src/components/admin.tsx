@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { IState } from '../store/store';
 import { updateMaxSimCompetencies } from '../store/actions';
-import NumberInput from './number-input';
+import NumberInput from './inputs/number-input';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;

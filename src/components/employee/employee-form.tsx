@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { ICompetence } from '../store/reducers/employees';
+import { ICompetence } from '../../store/reducers/employees';
 import { Redirect } from 'react-router-dom';
-import { IEmployee } from '../store/reducers/employees';
-import UpdateCompetenciesTable from './competencies/update-competencies-table';
-import { Typography, TextField, Theme, withStyles } from '@material-ui/core';
-import NumberInput from './number-input';
+import { IEmployee } from '../../store/reducers/employees';
+import UpdateCompetenciesTable from '../competencies/update-competencies-table';
+import { TextField, Theme, withStyles } from '@material-ui/core';
+import NumberInput from '../inputs/number-input';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
@@ -63,7 +63,6 @@ class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 		}
 		return (
 			<form onSubmit={(e) => this.onSubmit(e)}>
-				<Typography variant="display1" gutterBottom={true}>Enter employee details</Typography>
 				<TextField
 					id="name"
 					label="Name"

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { IEmployee } from '../store/reducers/employees';
-import Employee from './employee';
-import { deleteEmployee, updateAlert, IAlertPayload, IAlertDialogue } from '../store/actions';
+import { IEmployee } from '../../store/reducers/employees';
+import Employee from '../employee/employee-card';
+import { deleteEmployee, updateAlert, IAlertPayload, IAlertDialogue } from '../../store/actions';
 import { connect } from 'react-redux';
-import { IState } from '../store/store';
+import { IState } from '../../store/store';
 
 interface IProps {
 	employees: IEmployee[];

@@ -1,7 +1,7 @@
-import { IEmployee } from '../../store/reducers/employees';
+import { IEmployee } from '../../../store/reducers/employees';
 import * as renderer from 'react-test-renderer';
 import * as React from 'react';
-import Employee from '../employee';
+import Employee from '../../employee/employee-card';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Employee Component', () => {

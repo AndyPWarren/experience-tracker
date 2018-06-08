@@ -1,8 +1,8 @@
 import * as React from 'react';
 import AlertDialog from './alert';
 import { connect } from 'react-redux';
-import { IAlertPayload, clearAlert, IClearDialogue } from '../store/actions';
-import { IState } from '../store/store';
+import { IAlertPayload, clearAlert, IClearDialogue } from '../../store/actions';
+import { IState } from '../../store/store';
 
 interface IProps {
 	alert: IAlertPayload | null;

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { RouteComponentProps, Redirect } from 'react-router';
-import { IEmployee } from '../store/reducers/employees';
+import { IEmployee } from '../../store/reducers/employees';
 import { connect } from 'react-redux';
-import { IState } from '../store/store';
-import EmployeeForm from './employee-form';
-import { ICompetence } from '../store/reducers/employees';
-import { IAddEmployee, addEmployee, updateEmployee, IUpdateEmployee } from '../store/actions';
+import { IState } from '../../store/store';
+import EmployeeForm from '../employee/employee-form';
+import { ICompetence } from '../../store/reducers/employees';
+import { IAddEmployee, addEmployee, updateEmployee, IUpdateEmployee } from '../../store/actions';
+import { Typography } from '@material-ui/core';
 
 interface IParams {
 	employeeId: string;
@@ -35,19 +36,22 @@ class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps>
 			const employee = this.props.employees.find(((e) => e.id === id));
 			if (employee) {
 				return (
-					<EmployeeForm
-						maxSimultaneousCompetencies={this.props.maxSimultaneousCompetencies}
-						employee={employee}
-						onSubmit={(name: string, years: number, competencies: ICompetence[]) => {
-							this.props.updateEmployee(
-								id,
-								name,
-								years,
-								competencies
-							);
-						}}
-						previousCompetencies={this.getPreviousCompetencies()}
-					/>
+					<div>
+						<Typography variant="display1" gutterBottom={true}>Edit Employee</Typography>
+						<EmployeeForm
+							maxSimultaneousCompetencies={this.props.maxSimultaneousCompetencies}
+							employee={employee}
+							onSubmit={(name: string, years: number, competencies: ICompetence[]) => {
+								this.props.updateEmployee(
+									id,
+									name,
+									years,
+									competencies
+								);
+							}}
+							previousCompetencies={this.getPreviousCompetencies()}
+						/>
+					</div>
 				);
 			}
 			return (
@@ -55,18 +59,21 @@ class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps>
 			);
 		}
 		return (
-			<EmployeeForm
-				maxSimultaneousCompetencies={this.props.maxSimultaneousCompetencies}
-				employee={null}
-				onSubmit={(name: string, years: number, competencies: ICompetence[]) => {
-					this.props.addEmployee(
-						name,
-						years,
-						competencies
-					);
-				}}
-				previousCompetencies={this.getPreviousCompetencies()}
-			/>
+			<div>
+				<Typography variant="display1" gutterBottom={true}>Add Employee</Typography>
+				<EmployeeForm
+					maxSimultaneousCompetencies={this.props.maxSimultaneousCompetencies}
+					employee={null}
+					onSubmit={(name: string, years: number, competencies: ICompetence[]) => {
+						this.props.addEmployee(
+							name,
+							years,
+							competencies
+						);
+					}}
+					previousCompetencies={this.getPreviousCompetencies()}
+				/>
+			</div>
 		);
 	}
 	private getPreviousCompetencies(): string[] {
