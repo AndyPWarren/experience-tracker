@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme } from '@material-ui/core/styles';
 import * as classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,7 +17,7 @@ import { IEmployee } from '../store/reducers/employees';
 import CompetenciesViewTable from './competencies/competencies-view-table';
 import { Link } from 'react-router-dom';
 
-const styles = (theme: any) => ({
+const styles = (theme: Theme) => ({
 	card: {
 		maxWidth: 300,
 	},

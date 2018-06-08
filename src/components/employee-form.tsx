@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import { ICompetence } from '../store/reducers/employees';
 import { Redirect } from 'react-router-dom';
 import { IEmployee } from '../store/reducers/employees';
 import UpdateCompetenciesTable from './competencies/update-competencies-table';
+import { Typography, TextField } from '@material-ui/core';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
@@ -55,7 +55,7 @@ export default class EmployeeForm extends React.Component<IProps, IAddEmployeeSt
 		}
 		return (
 			<form onSubmit={(e) => this.onSubmit(e)}>
-				<h3>Enter employee details</h3>
+				<Typography variant="display1" gutterBottom={true}>Enter employee details</Typography>
 				<TextField
 					id="name"
 					label="Name"
