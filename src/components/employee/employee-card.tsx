@@ -13,7 +13,7 @@ import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { IEmployee } from '../../store/reducers/employees';
+import { IEmployee, ICompetence } from '../../store/reducers/employees';
 import CompetenciesViewTable from '../competencies/competencies-view-table';
 import { Link } from 'react-router-dom';
 import IconCallMade from '@material-ui/icons/CallMade';
@@ -107,7 +107,7 @@ class EmployeeCard extends React.Component<IProps, IState> {
 					<Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
 						<CardContent>
 							<CompetenciesViewTable
-								competencies={this.props.employee.competencies} />
+								competencies={this.getTopCompetencies()} />
 						</CardContent>
 					</Collapse>
 				</Card>
@@ -116,6 +116,27 @@ class EmployeeCard extends React.Component<IProps, IState> {
 	}
 	private handleExpandClick() {
 		this.setState({ expanded: !this.state.expanded });
+	}
+	private getTopCompetencies(): ICompetence[] {
+		const competencies = [...this.props.employee.competencies];
+		if (competencies.length <= 1) {
+			return competencies;
+		}
+		const limit = 3;
+		const cutoff = competencies.length >= limit ? limit : competencies.length;
+		const sorted = competencies
+			.sort((a, b) => {
+				if (a.yearsExperience > b.yearsExperience) {
+					return -1;
+				}
+				if (a.yearsExperience < b.yearsExperience) {
+					return 1;
+				}
+				return 0;
+			});
+		return new Array(cutoff)
+			.fill(null)
+			.map((val, i) => sorted[i]);
 	}
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IEmployee } from '../../store/reducers/employees';
-import Employee from '../employee/employee-card';
+import EmployeeCard from '../employee/employee-card';
 import { deleteEmployee, updateAlert, IAlertPayload, IAlertDialogue } from '../../store/actions';
 import { connect } from 'react-redux';
 import { IState } from '../../store/store';
@@ -20,7 +20,7 @@ class ListEmployees extends React.Component<IProps & IDispatchProps> {
 			<div className="cards-container">
 				{this.props.employees.map(((employee) =>
 					<div className="card" key={employee.id}>
-						<Employee 
+						<EmployeeCard 
 							employee={employee}
 							deleteClickHandler={(id: number) => {
 								this.props.updateAlert({
