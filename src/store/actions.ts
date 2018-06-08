@@ -18,7 +18,12 @@ export interface IAddEmployee {
 		competencies: ICompetence[]
 	};
 }
-
+/**
+ * create an add employee action
+ * @param name 
+ * @param totalYearsExperience 
+ * @param competencies 
+ */
 export function addEmployee(
 	name: string,
 	totalYearsExperience: number,
@@ -42,7 +47,13 @@ export interface IUpdateEmployee {
 		competencies: ICompetence[]
 	};
 }
-
+/**
+ * create an update employee action
+ * @param id id of the employee to update
+ * @param name employees name
+ * @param totalYearsExperience years of experience
+ * @param competencies array of their competencies
+ */
 export function updateEmployee(
 	id: number,
 	name: string,
@@ -65,7 +76,10 @@ export interface IDeleteEmployee {
 		id: number
 	};
 }
-
+/**
+ * create a delete employee action
+ * @param id id of the employee for deletion
+ */
 export function deleteEmployee(id: number): IDeleteEmployee {
 	return {
 		type: ActionTypes.DeleteEmployee,
@@ -81,7 +95,10 @@ export interface IUpdateMaxSimCompetencies {
 		value: number
 	};
 }
-
+/**
+ * create an update max simultaneous competencies object
+ * @param value number to set
+ */
 export function updateMaxSimCompetencies(value: number): IUpdateMaxSimCompetencies {
 	return {
 		type: ActionTypes.UpdateMaxSimCompetencies,
@@ -97,12 +114,15 @@ export interface IAlertPayload {
 	action: () => void;
 }
 
-export interface IAlertDialogue {
+export interface IAlert {
 	type: ActionTypes.UpdateAlert;
 	payload: IAlertPayload;
 }
-
-export function updateAlert(payload: IAlertPayload): IAlertDialogue {
+/**
+ * create an update alert action
+ * @param payload alert data
+ */
+export function updateAlert(payload: IAlertPayload): IAlert {
 	return {
 		type: ActionTypes.UpdateAlert,
 		payload
@@ -112,7 +132,9 @@ export function updateAlert(payload: IAlertPayload): IAlertDialogue {
 export interface IClearDialogue {
 	type: ActionTypes.ClearAlert;
 }
-
+/**
+ * create a delete alert action
+ */
 export function clearAlert(): IClearDialogue {
 	return {
 		type: ActionTypes.ClearAlert

@@ -20,7 +20,13 @@ interface IState {
 	competency: ICompetence;
 	error: string;
 }
-
+/**
+ * Table row for editing a competency
+ *
+ * @export
+ * @class EditCompetencyRow
+ * @extends {React.Component<IProps, IState>}
+ */
 export default class EditCompetencyRow extends React.Component<IProps, IState> {
 	public state: IState = {
 		competency: this.props.competency,
@@ -64,37 +70,6 @@ export default class EditCompetencyRow extends React.Component<IProps, IState> {
 						});
 					}}
 				/>
-				{/* <TextField
-					style={{width: '100%'}}
-					id="years"
-					value={this.state.competency.yearsExperience}
-					inputProps={{min: 0, max: this.props.maxYears}}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-						if (event.target.value === '') {
-							return;
-						}
-						const years: number = parseInt(event.target.value, 10);
-						if (years + this.props.total > this.props.maxYears * this.props.maxSimultaneousCompetencies) {
-							const error = 'exceeds max simultaneous competencies';
-							this.setState({
-								...this.state,
-								competency: this.updateYears(years),
-								error
-							});
-							return;
-						}
-						this.setState({
-							...this.state,
-							competency: this.updateYears(years),
-							error: ''
-						});
-					}}
-					type="number"
-					InputLabelProps={{
-						shrink: true,
-					}}
-					margin="normal"
-				/> */}
 				{this.state.error && 
 					<p style={{'color': 'red'}}>{this.state.error}</p>
 				}

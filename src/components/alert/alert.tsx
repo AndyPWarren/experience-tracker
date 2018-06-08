@@ -9,7 +9,15 @@ interface IProps {
   messageContent: string;
   closeHandler: (confirmed: boolean) => void;
 }
-
+/**
+ * Material Dialog component for displaying an alert
+ * Allows message title, content and button texts to be set
+ * Calls the close handler passing in the confirmed state
+ *
+ * @export
+ * @class AlertDialog
+ * @extends {React.Component<IProps>}
+ */
 export default class AlertDialog extends React.Component<IProps> {
 	public render() {
     return (

@@ -21,9 +21,15 @@ const styles = {
 interface IProps {
 	classes: any;
 }
-
+/**
+ * Top nav/app bar across the screen, houses the admin link
+ *
+ * @param {IProps} props
+ * @returns JSX.Element
+ */
 function MainAppBar(props: IProps) {
 	const { classes } = props;
+	
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">

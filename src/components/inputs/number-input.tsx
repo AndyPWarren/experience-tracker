@@ -10,7 +10,14 @@ interface IProps {
 	max?: number;
 	label?: string;
 }
-
+/**
+ * Number Input wraps the material number text field
+ * and provides increment and decrement buttons
+ *
+ * @export
+ * @class NumberInput
+ * @extends {React.Component<IProps>}
+ */
 export default class NumberInput extends React.Component<IProps> {
 	public render() {
 		return (

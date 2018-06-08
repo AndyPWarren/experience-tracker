@@ -8,7 +8,13 @@ import AlertManager from './components/alert/alert-manager';
 import MainAppBar from './components/app-bar';
 import Admin from './components/admin';
 import SingleEmployee from './components/employee/single-employee';
-
+/**
+ * Main app component defines the routes
+ *
+ * @export
+ * @class App
+ * @extends {React.Component}
+ */
 export default class App extends React.Component {
   public render() {
     return (

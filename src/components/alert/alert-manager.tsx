@@ -15,7 +15,13 @@ interface IDispatchProps {
 interface IAlertManagerState {
 	open: boolean;
 }
-
+/**
+ * Manages displaying the alert form the alert value in the store
+ * calls the alert action if the message has been confirmed
+ *
+ * @class AlertManager
+ * @extends {(React.Component<IProps & IDispatchProps, IAlertManagerState>)}
+ */
 class AlertManager extends React.Component<IProps & IDispatchProps, IAlertManagerState> {
 	public state: IAlertManagerState = {
 		open: false,

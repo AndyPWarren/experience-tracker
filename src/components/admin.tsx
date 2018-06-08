@@ -12,7 +12,12 @@ interface IProps {
 interface IDispatchProps {
 	updateMaxSimCompetencies: (value: number) => void;
 }
-
+/**
+ * Admin view display editing the max simultaneous competencies variable
+ *
+ * @class Admin
+ * @extends {(React.Component<IProps & IDispatchProps>)}
+ */
 class Admin extends React.Component<IProps & IDispatchProps> {
 	public render() {
 		return (

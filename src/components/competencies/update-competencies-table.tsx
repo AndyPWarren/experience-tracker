@@ -22,7 +22,13 @@ interface IState {
 	competencies: IEditCompetency[];
 	totalExperience: number;
 }
-
+/**
+ * Material table for editing/updating a competency
+ *
+ * @export
+ * @class UpdateCompetenciesTable
+ * @extends {React.Component<IProps, IState>}
+ */
 export default class UpdateCompetenciesTable extends React.Component<IProps, IState> {
 	public state: IState = {
 		competencies: this.props.competencies.map((c) => {

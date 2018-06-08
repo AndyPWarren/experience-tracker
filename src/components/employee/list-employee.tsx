@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IEmployee } from '../../store/reducers/employees';
 import EmployeeCard from '../employee/employee-card';
-import { deleteEmployee, updateAlert, IAlertPayload, IAlertDialogue } from '../../store/actions';
+import { deleteEmployee, updateAlert, IAlertPayload, IAlert } from '../../store/actions';
 import { connect } from 'react-redux';
 import { IState } from '../../store/store';
 
@@ -11,9 +11,14 @@ interface IProps {
 
 interface IDispatchProps {
 	deleteEmployee: (id: number) => void;
-	updateAlert: (Message: IAlertPayload) => IAlertDialogue;
+	updateAlert: (Message: IAlertPayload) => IAlert;
 }
-
+/**
+ * View for listing employees
+ *
+ * @class ListEmployees
+ * @extends {(React.Component<IProps & IDispatchProps>)}
+ */
 class ListEmployees extends React.Component<IProps & IDispatchProps> {
 	public render() {
 		return (

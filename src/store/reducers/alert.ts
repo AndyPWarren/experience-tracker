@@ -1,9 +1,14 @@
-import { ActionTypes, IAlertPayload, IAlertDialogue, IClearDialogue } from './../actions';
+import { ActionTypes, IAlertPayload, IAlert, IClearDialogue } from './../actions';
 
 type Actions = 
-	IAlertDialogue |
+	IAlert |
 	IClearDialogue;
 
+/**
+ * alert reducer
+ * @param state previous alert 
+ * @param action action to perform on the state
+ */
 export function alert(state: IAlertPayload | null = null, action: Actions ): IAlertPayload | null {
 	switch (action.type) {
 		case ActionTypes.UpdateAlert:

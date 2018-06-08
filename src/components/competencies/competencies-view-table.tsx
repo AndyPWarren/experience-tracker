@@ -10,7 +10,13 @@ import TableBody from '@material-ui/core/TableBody/TableBody';
 interface IProps {
 	competencies: ICompetence[];
 }
-
+/**
+ * List the employees competencies in a table
+ *
+ * @export
+ * @class CompetenciesViewTable
+ * @extends {React.Component<IProps>}
+ */
 export default class CompetenciesViewTable extends React.Component<IProps> {
 	public render() {
 		return (

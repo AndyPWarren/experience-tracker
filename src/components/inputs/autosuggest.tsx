@@ -45,7 +45,13 @@ interface ISuggestion {
 interface IState {
 	suggestions: ISuggestion[];
 }
-
+/**
+ * provides a material wrapper for auto completion
+ * using auto-suggest and autosuggest-highlight
+ *
+ * @class IntegrationAutosuggest
+ * @extends {React.Component<IProps, IState>}
+ */
 class IntegrationAutosuggest extends React.Component<IProps, IState> {
   public state: IState = {
     suggestions: []

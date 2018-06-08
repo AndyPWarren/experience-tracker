@@ -10,7 +10,19 @@ import { Typography, Button } from '@material-ui/core';
 interface IProps {
 	employees: IEmployee[];
 }
+/**
+ * Displays a list of employees and link to add them
+ *
+ * @class Home
+ * @extends {React.Component<IProps>}
+ */
 class Home extends React.Component<IProps> {
+	/**
+	 * display the home view
+	 *
+	 * @returns JSX.Element for the home view
+	 * @memberof Home
+	 */
 	public render() {
 		return (
 			<main>

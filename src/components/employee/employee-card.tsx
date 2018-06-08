@@ -49,7 +49,13 @@ interface IProps {
 interface IState {
 	expanded: boolean;
 }
-
+/**
+ * Material card component for displaying some employee data
+ * only shows the top three competencies by years of experience
+ *
+ * @class EmployeeCard
+ * @extends {React.Component<IProps, IState>}
+ */
 class EmployeeCard extends React.Component<IProps, IState> {
 	public state = { expanded: false };
 

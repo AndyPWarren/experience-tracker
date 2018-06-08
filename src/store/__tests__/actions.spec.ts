@@ -1,4 +1,4 @@
-import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, IDeleteEmployee, deleteEmployee, IUpdateMaxSimCompetencies, updateMaxSimCompetencies, IAlertPayload, IAlertDialogue, updateAlert, clearAlert } from "../actions";
+import { IAddEmployee, addEmployee, ActionTypes, IUpdateEmployee, updateEmployee, IDeleteEmployee, deleteEmployee, IUpdateMaxSimCompetencies, updateMaxSimCompetencies, IAlertPayload, IAlert, updateAlert, clearAlert } from "../actions";
 
 
 describe('actions', () => {
@@ -93,7 +93,7 @@ describe('actions', () => {
 				messageContent: 'content',
 				action: () => console.log
 			};
-			const updateDialogueAction: IAlertDialogue = updateAlert(
+			const updateDialogueAction: IAlert = updateAlert(
 				payload
 			);
 			expect(updateDialogueAction).toEqual({

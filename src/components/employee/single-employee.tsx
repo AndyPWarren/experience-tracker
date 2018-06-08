@@ -14,7 +14,12 @@ interface IParams {
 interface IProps extends RouteComponentProps<IParams> {
 	employees: IEmployee[];
 }
-
+/**
+ * View for a single employee
+ *
+ * @class SingleEmployee
+ * @extends {React.Component<IProps>}
+ */
 class SingleEmployee extends React.Component<IProps> {
 	public render() {
 		const id: number = parseInt(this.props.match.params.employeeId, 10);

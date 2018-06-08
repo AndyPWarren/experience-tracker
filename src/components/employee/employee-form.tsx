@@ -36,7 +36,12 @@ const styles = (theme: Theme) => ({
 		margin: theme.spacing.unit,
 	}
 });
-
+/**
+ * Form for manipulating (adding/editing) a user
+ *
+ * @class EmployeeForm
+ * @extends {React.Component<IProps, IAddEmployeeState>}
+ */
 class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 	public state: IAddEmployeeState = initialState;
 

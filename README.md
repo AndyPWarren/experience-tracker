@@ -1,3 +1,15 @@
+# Experience tracker
+
+My solution to the problem outlined in [this gist](https://gist.github.com/heikela/9105949272e169bf891a84af6c201afa). Created as a learning exercise for React/Redux.
+
+I have used a material design approach utilizing react components from [material-ui](https://material-ui.com/) to facilitate clean design and quick development.
+
+### Future Improvement
+1. Improve test coverage. The redux store logic is well covered however it would be beneficial to improve component test coverage. A few examples of testing components has been provided.
+2. Implement a snackbar confirming certain actions (create/update/delete etc).
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

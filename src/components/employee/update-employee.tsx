@@ -28,7 +28,13 @@ interface IProps extends RouteComponentProps<IParams> {
 	employees: IEmployee[];
 	maxSimultaneousCompetencies: number;
 }
-
+/**
+ * Managers whether the user is editing or adding an employee
+ * sets the employee form component based on that
+ *
+ * @class UpdateEmployee
+ * @extends {(React.Component<IProps & IAddEmployeeDispatchProps>)}
+ */
 class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps> {
 	public render() {
 		if (this.props.match.params.employeeId) {

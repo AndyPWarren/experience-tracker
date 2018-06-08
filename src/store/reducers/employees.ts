@@ -17,7 +17,11 @@ export type Action =
 	| IAddEmployee
 	| IUpdateEmployee
 	| IDeleteEmployee;
-
+/**
+ * employees reducer
+ * @param state array of pervious employee
+ * @param action action to perform on the state
+ */
 export function employees(state: IEmployee[] = [], action: Action): IEmployee[] {
 	switch (action.type) {
 		case ActionTypes.AddEmployee:
