@@ -4,13 +4,14 @@ import { ICompetence } from '../store/reducers/employees';
 import { Redirect } from 'react-router-dom';
 import { IEmployee } from '../store/reducers/employees';
 import UpdateCompetenciesTable from './competencies/update-competencies-table';
-import { Typography, TextField } from '@material-ui/core';
+import { Typography, TextField, Theme, withStyles } from '@material-ui/core';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
 	employee: IEmployee | null;
 	onSubmit: (name: string, totalYears: number, competencies: ICompetence[]) => void;
 	previousCompetencies: string[];
+	classes: any;
 }
 
 interface IAddEmployeeState {
@@ -29,7 +30,13 @@ const initialState: IAddEmployeeState = {
 	redirect: false
 };
 
-export default class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
+const styles = (theme: Theme) => ({
+	button: {
+		margin: theme.spacing.unit,
+	}
+});
+
+class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 	public state: IAddEmployeeState = initialState;
 
 	constructor(props: IProps) {
@@ -95,8 +102,8 @@ export default class EmployeeForm extends React.Component<IProps, IAddEmployeeSt
 				/>
 				<br />
 				<Button variant="raised" color="primary" type="submit">Save employee</Button>
-				<br />
 				<Button
+					className={this.props.classes.button}
 					variant="raised"
 					color="secondary"
 					type="button"
@@ -128,3 +135,5 @@ export default class EmployeeForm extends React.Component<IProps, IAddEmployeeSt
 		this.setState({ redirect: true });
 	}
 }
+
+export default withStyles(styles)(EmployeeForm);

@@ -2,10 +2,10 @@ import * as React from 'react';
 import ListEmployees from './list-employee';
 import { Link } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
-import IconButton from '@material-ui/core/IconButton';
 import { IState } from '../store/store';
 import { connect } from 'react-redux';
 import { IEmployee } from '../store/reducers/employees';
+import { Typography, Button } from '@material-ui/core';
 
 interface IProps {
 	employees: IEmployee[];
@@ -14,18 +14,18 @@ class Home extends React.Component<IProps> {
 	public render() {
 		return (
 			<main>
-				<h3>
+				<Typography variant="display1" gutterBottom={true}>
 					Employees
-					<Link to={'/add-employee'}>
-						<IconButton color="primary" aria-label="add employee">
-							<AddIcon />
-						</IconButton>
-					</Link>
-				</h3>
+				</Typography>
 				{
 					this.props.employees.length === 0 &&
 					<p>No employees, add some by clicking the plus button</p>
 				}
+				<Link to={'/add-employee'}>
+					<Button variant="fab" color="primary" aria-label="add employee">
+						<AddIcon />
+					</Button>
+				</Link>
 				{
 					this.props.employees.length > 0 &&
 					<ListEmployees />
