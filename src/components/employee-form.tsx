@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { IEmployee } from '../store/reducers/employees';
 import UpdateCompetenciesTable from './competencies/update-competencies-table';
 import { Typography, TextField, Theme, withStyles } from '@material-ui/core';
+import NumberInput from './number-input';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
@@ -72,21 +73,13 @@ class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 					required={true}
 				/>
 				<br />
-				<TextField
-					id="years"
-					label="total years experience"
+				<NumberInput
 					value={this.state.totalYearsExperience}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-						const value: number = parseInt(event.target.value, 10);
-						if (value >= 0) {
-							this.setState({ totalYearsExperience: value });
-						}
+					changeHandler={(value: number) => {
+						this.setState({ totalYearsExperience: value });
 					}}
-					type="number"
-					InputLabelProps={{
-						shrink: true,
-					}}
-					margin="normal"
+					min={0}
+					label="total years experience"
 				/>
 				<UpdateCompetenciesTable
 					competencies={this.state.competencies}

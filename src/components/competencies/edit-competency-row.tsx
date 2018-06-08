@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { ICompetence } from '../../store/reducers/employees';
-import { TableRow, TableCell, TextField, IconButton } from '@material-ui/core';
+import { TableRow, TableCell, IconButton } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IntegrationAutosuggest from '../autosuggest';
+import NumberInput from '../number-input';
 
 interface IProps {
 	competency: ICompetence;
@@ -42,7 +43,28 @@ export default class EditCompetencyRow extends React.Component<IProps, IState> {
 				/>
 				</TableCell>
 				<TableCell numeric={true}>
-				<TextField
+				<NumberInput
+					max={this.props.maxYears}
+					min={0}
+					value={this.state.competency.yearsExperience}
+					changeHandler={(years: number) => {
+						if (years + this.props.total > this.props.maxYears * this.props.maxSimultaneousCompetencies) {
+							const error = 'exceeds max simultaneous competencies';
+							this.setState({
+								...this.state,
+								competency: this.updateYears(years),
+								error
+							});
+							return;
+						}
+						this.setState({
+							...this.state,
+							competency: this.updateYears(years),
+							error: ''
+						});
+					}}
+				/>
+				{/* <TextField
 					style={{width: '100%'}}
 					id="years"
 					value={this.state.competency.yearsExperience}
@@ -72,7 +94,7 @@ export default class EditCompetencyRow extends React.Component<IProps, IState> {
 						shrink: true,
 					}}
 					margin="normal"
-				/>
+				/> */}
 				{this.state.error && 
 					<p style={{'color': 'red'}}>{this.state.error}</p>
 				}
