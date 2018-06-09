@@ -16,6 +16,7 @@ interface IProps {
 	maxSimultaneousCompetencies: number;
 	updateHandler: (competencies: ICompetence[]) => void;
 	previousCompetencies: string[];
+	exceedsMaxSimultaneousCompetencies: boolean;
 }
 
 interface IState {
@@ -64,6 +65,7 @@ export default class UpdateCompetenciesTable extends React.Component<IProps, ISt
 										maxYears={this.props.maxYears}
 										total={this.state.totalExperience}
 										previousCompetencies={this.props.previousCompetencies}
+										exceedsMaxSimultaneousCompetencies={this.props.exceedsMaxSimultaneousCompetencies}
 									/>
 								);
 							}
@@ -88,7 +90,10 @@ export default class UpdateCompetenciesTable extends React.Component<IProps, ISt
 					<TableFooter>
 						<TableRow>
 							<TableCell>
-								<IconButton onClick={() => this.addRow()}>
+								<IconButton 
+									onClick={() => this.addRow()}
+									disabled={this.props.exceedsMaxSimultaneousCompetencies}
+								>
 									<AddIcon />
 								</IconButton>
 							</TableCell>

@@ -20,7 +20,11 @@ describe('Employee Component', () => {
 		const tree = renderer
 			.create(
 				<MemoryRouter>
-					<Employee employee={mockEmployee} deleteClickHandler={() => console.log} />
+					<Employee 
+						employee={mockEmployee}
+						deleteClickHandler={() => console.log}
+						exceedsMaxSimultaneousCompetencies={false}
+					/>
 				</MemoryRouter>
 			)
 			.toJSON();

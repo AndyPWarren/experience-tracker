@@ -3,43 +3,89 @@
 exports[`Employee Component renders correctly 1`] = `
 <div>
   <div
-    className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 MuiCard-root-6 EmployeeCard-card-1"
+    className="MuiPaper-root-8 MuiPaper-elevation2-12 MuiPaper-rounded-9 MuiCard-root-7 EmployeeCard-card-1"
   >
-    <div
-      className="MuiCardHeader-root-34"
+    <a
+      href="/employee/1"
+      onClick={[Function]}
     >
       <div
-        className="MuiCardHeader-avatar-35"
+        className="MuiCardHeader-root-35"
       >
         <div
-          aria-label="Recipe"
-          className="MuiAvatar-root-40 MuiAvatar-colorDefault-41 EmployeeCard-avatar-5"
+          className="MuiCardHeader-avatar-36"
         >
-          d
+          <div
+            aria-label="Recipe"
+            className="MuiAvatar-root-41 MuiAvatar-colorDefault-42 EmployeeCard-avatar-6"
+          >
+            d
+          </div>
+        </div>
+        <div
+          className="MuiCardHeader-content-38"
+        >
+          <span
+            className="MuiTypography-root-44 MuiTypography-body2-52 MuiCardHeader-title-39"
+          >
+            dave smith
+          </span>
+        </div>
+        <div
+          className="MuiCardHeader-action-37"
+        >
+          <button
+            className="MuiButtonBase-root-74 MuiIconButton-root-68"
+            disabled={false}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label-73"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root-77"
+                color={undefined}
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <g>
+                  <path
+                    d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5z"
+                  />
+                </g>
+              </svg>
+            </span>
+            <span
+              className="MuiTouchRipple-root-83"
+            />
+          </button>
         </div>
       </div>
-      <div
-        className="MuiCardHeader-content-37"
-      >
-        <span
-          className="MuiTypography-root-43 MuiTypography-body2-51 MuiCardHeader-title-38"
-        >
-          dave smith
-        </span>
-      </div>
-    </div>
+    </a>
     <div
-      className="MuiCardContent-root-67"
+      className="MuiCardContent-root-90"
     >
       <p
-        className="MuiTypography-root-43 MuiTypography-body1-52"
+        className="MuiTypography-root-44 MuiTypography-body1-53"
       >
         Total years of experience: 
         1
       </p>
     </div>
     <div
-      className="MuiCardActions-root-68 EmployeeCard-actions-2"
+      className="MuiCardActions-root-91 EmployeeCard-actions-3"
     >
       <a
         href="/edit-employee/1"
@@ -47,7 +93,7 @@ exports[`Employee Component renders correctly 1`] = `
       >
         <button
           aria-label="Edit"
-          className="MuiButtonBase-root-76 MuiIconButton-root-70"
+          className="MuiButtonBase-root-74 MuiIconButton-root-68"
           disabled={false}
           onBlur={[Function]}
           onFocus={[Function]}
@@ -63,11 +109,11 @@ exports[`Employee Component renders correctly 1`] = `
           type="button"
         >
           <span
-            className="MuiIconButton-label-75"
+            className="MuiIconButton-label-73"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-79"
+              className="MuiSvgIcon-root-77"
               color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
@@ -80,13 +126,13 @@ exports[`Employee Component renders correctly 1`] = `
             </svg>
           </span>
           <span
-            className="MuiTouchRipple-root-85"
+            className="MuiTouchRipple-root-83"
           />
         </button>
       </a>
       <button
         aria-label="Edit"
-        className="MuiButtonBase-root-76 MuiIconButton-root-70"
+        className="MuiButtonBase-root-74 MuiIconButton-root-68"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -103,11 +149,11 @@ exports[`Employee Component renders correctly 1`] = `
         type="button"
       >
         <span
-          className="MuiIconButton-label-75"
+          className="MuiIconButton-label-73"
         >
           <svg
             aria-hidden="true"
-            className="MuiSvgIcon-root-79"
+            className="MuiSvgIcon-root-77"
             color={undefined}
             focusable="false"
             viewBox="0 0 24 24"
@@ -120,7 +166,7 @@ exports[`Employee Component renders correctly 1`] = `
           </svg>
         </span>
         <span
-          className="MuiTouchRipple-root-85"
+          className="MuiTouchRipple-root-83"
         />
       </button>
     </div>

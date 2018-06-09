@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { IEmployee } from '../../store/reducers/employees';
-import { Typography, IconButton } from '@material-ui/core';
-import CompetenciesViewTable from '../competencies/competencies-view-table';
-import { RouteComponentProps, Redirect, Link } from 'react-router-dom';
+import { RouteComponentProps, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IState } from '../../store/store';
-import IconEdit from '@material-ui/icons/Edit';
+import Employee from './employee';
+import { checkMaxSimultaneous } from '../../services/competency-checker';
 
 interface IParams {
 	employeeId: string;
@@ -13,6 +12,7 @@ interface IParams {
 
 interface IProps extends RouteComponentProps<IParams> {
 	employees: IEmployee[];
+	maxSimultaneousCompetencies: number;
 }
 /**
  * View for a single employee
@@ -29,26 +29,16 @@ class SingleEmployee extends React.Component<IProps> {
 		const employee = this.props.employees.find(((e) => e.id === id));
 		if (employee) {
 			return (
-				<div>
-					<Typography variant="display1" gutterBottom={true}>
-						Employee
-					</Typography>
-					<Typography variant="headline" gutterBottom={true}>
-						{employee.name} 
-						<Link to={`/edit-employee/${employee.id}`}>
-							<IconButton>
-								<IconEdit />
-							</IconButton>
-						</Link>
-					</Typography>
-					<Typography variant="body1" gutterBottom={true}>
-						Total years experience: {employee.totalYearsExperience}
-					</Typography>
-					<br />
-					{employee.competencies.length > 0 && 
-					<CompetenciesViewTable competencies={employee.competencies}/>
+				<Employee 
+					employee={employee}
+					exceedsMaxSimultaneousCompetencies={
+						checkMaxSimultaneous(
+							employee.competencies,
+							employee.totalYearsExperience,
+							this.props.maxSimultaneousCompetencies
+						)
 					}
-				</div>
+				/>
 			);
 		} else {
 			return this.renderRedirect();
@@ -65,7 +55,8 @@ export default connect(
 	(state: IState) => {
 		console.log(state);
 		return {
-			employees: state.employees
+			employees: state.employees,
+			maxSimultaneousCompetencies: state.maxSimultaneousCompetencies
 		};
 	}
 )(SingleEmployee);

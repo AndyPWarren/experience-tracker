@@ -1,26 +1,27 @@
 import * as React from 'react';
-import { withStyles, Theme } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import * as classnames from 'classnames';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { IEmployee, ICompetence } from '../../store/reducers/employees';
 import CompetenciesViewTable from '../competencies/competencies-view-table';
 import { Link } from 'react-router-dom';
 import IconCallMade from '@material-ui/icons/CallMade';
+import IconError from '@material-ui/icons/Error';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { Tooltip, Card, CardHeader, Avatar, IconButton, CardContent, Typography, CardActions, Collapse } from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
 
-const styles = (theme: Theme) => ({
+const styles = (theme: Theme) => createStyles({
 	card: {
 		maxWidth: 300,
+		position: 'relative',
+		overflow: 'visible',
+	},
+	error: {
+		position: 'absolute',
+		right: '-0.5em',
+		top: '-0.5em',
 	},
 	actions: {
 		display: 'flex',
@@ -43,6 +44,7 @@ const styles = (theme: Theme) => ({
 interface IProps {
 	classes: any;
 	employee: IEmployee;
+	exceedsMaxSimultaneousCompetencies: boolean;
 	deleteClickHandler: (id: number) => void;
 }
 
@@ -65,6 +67,11 @@ class EmployeeCard extends React.Component<IProps, IState> {
 		return (
 			<div>
 				<Card className={classes.card}>
+					{this.props.exceedsMaxSimultaneousCompetencies &&
+						<Tooltip id="tooltip-icon" title="Competencies exceeds max simultaneous">
+							<IconError color="error" className={classes.error} />
+						</Tooltip>
+					}
 					<Link to={`/employee/${this.props.employee.id}`}>
 						<CardHeader
 							avatar={

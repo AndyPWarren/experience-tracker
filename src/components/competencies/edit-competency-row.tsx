@@ -13,6 +13,7 @@ interface IProps {
 	maxYears: number;
 	total: number;
 	maxSimultaneousCompetencies: number;
+	exceedsMaxSimultaneousCompetencies: boolean;
 	previousCompetencies: string[];
 }
 
@@ -53,6 +54,7 @@ export default class EditCompetencyRow extends React.Component<IProps, IState> {
 					max={this.props.maxYears}
 					min={0}
 					value={this.state.competency.yearsExperience}
+					disabledIncrement={this.props.exceedsMaxSimultaneousCompetencies}
 					changeHandler={(years: number) => {
 						if (years + this.props.total > this.props.maxYears * this.props.maxSimultaneousCompetencies) {
 							const error = 'exceeds max simultaneous competencies';

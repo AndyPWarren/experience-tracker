@@ -4,8 +4,10 @@ import { ICompetence } from '../../store/reducers/employees';
 import { Redirect } from 'react-router-dom';
 import { IEmployee } from '../../store/reducers/employees';
 import UpdateCompetenciesTable from '../competencies/update-competencies-table';
-import { TextField, Theme, withStyles } from '@material-ui/core';
+import { TextField, Theme, withStyles, Typography } from '@material-ui/core';
 import NumberInput from '../inputs/number-input';
+import { checkMaxSimultaneous } from '../../services/competency-checker';
+import IconError from '@material-ui/icons/Error';
 
 interface IProps {
 	maxSimultaneousCompetencies: number;
@@ -34,6 +36,11 @@ const initialState: IAddEmployeeState = {
 const styles = (theme: Theme) => ({
 	button: {
 		margin: theme.spacing.unit,
+	},
+	error: {
+		display: 'flex',
+		alignItems: 'center',
+		marginBottom: '10px',
 	}
 });
 /**
@@ -66,6 +73,12 @@ class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 				<Redirect to={'/'} />
 			);
 		}
+		const exceeds = checkMaxSimultaneous(
+			this.state.competencies,
+			this.state.totalYearsExperience,
+			this.props.maxSimultaneousCompetencies
+		);
+		const min = exceeds === true ? this.state.totalYearsExperience : 0;
 		return (
 			<form onSubmit={(e) => this.onSubmit(e)}>
 				<TextField
@@ -82,9 +95,14 @@ class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 					changeHandler={(value: number) => {
 						this.setState({ totalYearsExperience: value });
 					}}
-					min={0}
+					min={min}
 					label="total years experience"
 				/>
+				{ exceeds &&
+				<Typography variant="body1" className={this.props.classes.error}>
+					<IconError color="error" />
+					Competencies exceeds max simultaneous competencies constraint
+				</Typography> }
 				<UpdateCompetenciesTable
 					competencies={this.state.competencies}
 					maxYears={this.state.totalYearsExperience}
@@ -96,6 +114,7 @@ class EmployeeForm extends React.Component<IProps, IAddEmployeeState> {
 						});
 					}}
 					previousCompetencies={this.props.previousCompetencies}
+					exceedsMaxSimultaneousCompetencies={exceeds}
 				/>
 				<br />
 				<Button variant="raised" color="primary" type="submit">Save employee</Button>

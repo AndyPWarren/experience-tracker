@@ -78,6 +78,17 @@ describe('Number input component', () => {
 				expect(changeHandlerSpy).not.toHaveBeenCalledWith();
 			});
 		});
+
+		it('should not allow clicking on the increment button', () => {
+			component = mount(<NumberInput
+				value={5}
+				changeHandler={changeHandlerSpy}
+				label="some text"
+				disabledIncrement={true}
+			/>);
+			component.find('IconButton#increment').simulate('click');
+			expect(changeHandlerSpy).not.toHaveBeenCalled();
+		});
 	});
 
 	describe('typing in input field', () => {

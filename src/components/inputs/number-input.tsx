@@ -9,6 +9,7 @@ interface IProps {
 	min?: number;
 	max?: number;
 	label?: string;
+	disabledIncrement?: boolean;
 }
 /**
  * Number Input wraps the material number text field
@@ -59,11 +60,11 @@ export default class NumberInput extends React.Component<IProps> {
 				>
 					<IconRemove />
 				</IconButton>
-				<IconButton 
+				<IconButton
 					id="increment"
 					color="secondary"
 					onClick={() => this.props.changeHandler(this.props.value + 1)}
-					disabled={this.props.value === this.props.max}
+					disabled={this.props.disabledIncrement === true ? true : this.props.value === this.props.max}
 				>
 					<IconAdd />
 				</IconButton>
