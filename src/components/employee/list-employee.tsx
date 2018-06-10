@@ -4,9 +4,8 @@ import EmployeeCard from '../employee/employee-card';
 import { deleteEmployee, updateAlert, IAlertPayload, IAlert } from '../../store/actions';
 import { connect } from 'react-redux';
 import { IState } from '../../store/store';
-import { checkMaxSimultaneous } from '../../services/competency-checker';
-import { TextField, InputAdornment } from '@material-ui/core';
-import IconSearch from '@material-ui/icons/Search';
+import { checkMaxSimultaneous, getPreviousCompetencies } from '../../services/competeny-helpers';
+import IntegrationAutosuggest from '../inputs/autosuggest';
 
 interface IProps {
 	employees: IEmployee[];
@@ -38,26 +37,21 @@ class ListEmployees extends React.Component<IProps & IDispatchProps, IListEmploy
 				e.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== - 1 ||
 				e.competencies.filter((c) => c.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== - 1).length > 0
 			);
+		const suggestedCompetencies = getPreviousCompetencies(this.props.employees);
 		return (
 			<div>
-				<TextField
-          id="search"
-          label="Search"
-          value={this.state.search}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-						this.setState({
-							search: event.target.value
-						});
-					}}
-					InputProps={{
-						startAdornment: (
-							<InputAdornment position="start">
-								<IconSearch />
-							</InputAdornment>
-						),
-					}}
-          margin="normal"
-        />
+				<div className="search">
+					<IntegrationAutosuggest 
+						suggestions={suggestedCompetencies}
+						value={this.state.search}
+						changeHandler={(value: string) => {
+							this.setState({
+								search: value
+							});
+						}}
+						placeholderText="Search for name or competence"
+					/>
+				</div>
 				<div className="cards-container">
 					{filteredEmployees.map(((employee) =>
 						<div className="card" key={employee.id}>

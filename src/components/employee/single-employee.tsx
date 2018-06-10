@@ -4,7 +4,7 @@ import { RouteComponentProps, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IState } from '../../store/store';
 import Employee from './employee';
-import { checkMaxSimultaneous } from '../../services/competency-checker';
+import { checkMaxSimultaneous } from '../../services/competeny-helpers';
 
 interface IParams {
 	employeeId: string;

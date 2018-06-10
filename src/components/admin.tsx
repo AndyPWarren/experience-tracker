@@ -5,7 +5,7 @@ import { IState } from '../store/store';
 import { updateMaxSimCompetencies } from '../store/actions';
 import NumberInput from './inputs/number-input';
 import { IEmployee } from '../store/reducers/employees';
-import { checkMaxSimultaneous } from '../services/competency-checker';
+import { checkMaxSimultaneous } from '../services/competeny-helpers';
 import SimpleEmployeesList from './employee/simple-list';
 
 interface IProps {

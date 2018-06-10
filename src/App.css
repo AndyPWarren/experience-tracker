@@ -46,3 +46,7 @@ a {
 a.underline {
   text-decoration: underline;
 }
+
+.search {
+  width: 250px;
+}

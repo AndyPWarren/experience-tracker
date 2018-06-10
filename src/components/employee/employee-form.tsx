@@ -6,7 +6,7 @@ import { IEmployee } from '../../store/reducers/employees';
 import UpdateCompetenciesTable from '../competencies/update-competencies-table';
 import { TextField, Theme, withStyles, Typography } from '@material-ui/core';
 import NumberInput from '../inputs/number-input';
-import { checkMaxSimultaneous } from '../../services/competency-checker';
+import { checkMaxSimultaneous } from '../../services/competeny-helpers';
 import IconError from '@material-ui/icons/Error';
 
 interface IProps {

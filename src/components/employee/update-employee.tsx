@@ -7,6 +7,7 @@ import EmployeeForm from '../employee/employee-form';
 import { ICompetence } from '../../store/reducers/employees';
 import { IAddEmployee, addEmployee, updateEmployee, IUpdateEmployee } from '../../store/actions';
 import { Typography } from '@material-ui/core';
+import { getPreviousCompetencies } from '../../services/competeny-helpers';
 
 interface IParams {
 	employeeId: string;
@@ -55,7 +56,7 @@ class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps>
 									competencies
 								);
 							}}
-							previousCompetencies={this.getPreviousCompetencies()}
+							previousCompetencies={getPreviousCompetencies(this.props.employees)}
 						/>
 					</div>
 				);
@@ -77,24 +78,10 @@ class UpdateEmployee extends React.Component<IProps & IAddEmployeeDispatchProps>
 							competencies
 						);
 					}}
-					previousCompetencies={this.getPreviousCompetencies()}
+					previousCompetencies={getPreviousCompetencies(this.props.employees)}
 				/>
 			</div>
 		);
-	}
-	private getPreviousCompetencies(): string[] {
-		if (this.props.employees.length === 0) {
-			return [];
-		}
-		return this.props.employees
-			.map((employee) => {
-				return employee.competencies.map((c) => c.title);
-			})
-			.reduce((a, b) => [...a, ...b])
-			.sort()
-			.filter((item, i, arr) => {
-				return !i || item !== arr[i - 1];
-			});
 	}
 }
 
