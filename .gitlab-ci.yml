@@ -2,9 +2,10 @@
 
 stages:
   - build
+  - test
   - deploy
 
-# Build the static file
+# Build the static files
 build_static:
   variables:
     NODE_ENV: "production"
@@ -18,6 +19,15 @@ build_static:
   script:
     - yarn install --production=false
     - yarn build
+
+# Run test suite
+test:
+  stage: test
+  image: node:8.9.4
+  script:
+    - npm install -g create-react-app
+    - yarn install --production=false
+    - npm test
 
 # Deploy to Production (S3)
 deploy_prod:
