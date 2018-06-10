@@ -15,7 +15,12 @@ interface ISimpleListEmployeeProps {
 	employees: IEmployee[];
 	classes: any;
 }
-
+/**
+ * Display a simple list of employees linking to the detail view
+ *
+ * @param {ISimpleListEmployeeProps} props
+ * @returns
+ */
 function simpleEmployeesList(props: ISimpleListEmployeeProps) {
 	return (
 		<div className={props.classes.root}>
