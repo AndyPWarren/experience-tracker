@@ -13,6 +13,16 @@ export interface IEmployee {
 	competencies: ICompetence[];
 }
 
+export interface IEmployees {
+	history: IEmployee[];
+	current: IEmployee[];
+}
+
+const initialState: IEmployees = {
+	history: [],
+	current: []
+};
+
 export type Action =
 	| IAddEmployee
 	| IUpdateEmployee
@@ -22,17 +32,28 @@ export type Action =
  * @param state array of pervious employee
  * @param action action to perform on the state
  */
-export function employees(state: IEmployee[] = [], action: Action): IEmployee[] {
+export function employees(state: IEmployees = initialState, action: Action): IEmployees {
 	switch (action.type) {
 		case ActionTypes.AddEmployee:
-			return [...state, {
-				id: (state.length > 0) ? state[state.length - 1].id + 1 : 1,
+			const newEmployee: IEmployee = {
+				id: (state.current.length > 0) ? state.current[state.current.length - 1].id + 1 : 1,
 				name: action.payload.name,
 				totalYearsExperience: action.payload.totalYearsExperience,
 				competencies: [...action.payload.competencies]
-			}];
+			};
+			return {
+				...state,
+				current: [
+					...state.current,
+					newEmployee
+				],
+				history: [
+					...state.history,
+					newEmployee
+				]
+			};
 		case ActionTypes.UpdateEmployee:
-			return state.map((employee) => {
+			const updated = state.current.map((employee) => {
 				if (employee.id !== action.payload.id) {
 					return employee;
 				}
@@ -44,8 +65,20 @@ export function employees(state: IEmployee[] = [], action: Action): IEmployee[] 
 					competencies: [...action.payload.competencies]
 				};
 			});
+			return {
+				...state,
+				current: updated,
+				history: [
+					...state.history,
+					...updated.filter(e => e.id === action.payload.id)
+				]
+			};
 		case ActionTypes.DeleteEmployee:
-			return state.filter((employee) => employee.id !== action.payload.id);
+			const deleted = state.current.filter((employee) => employee.id !== action.payload.id);
+			return {
+				...state,
+				current: deleted
+			};
 		default:
 			return state;
 	}

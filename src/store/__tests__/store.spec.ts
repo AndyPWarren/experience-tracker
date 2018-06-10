@@ -6,7 +6,10 @@ describe('store', () => {
 	it('should set initial state', () => {
 		const state = store.getState();
 		expect(state).toEqual({
-			employees: [],
+			employees: {
+				current: [],
+				history: []
+			},
 			maxSimultaneousCompetencies: 3,
 			alert: null
 		});
@@ -15,7 +18,7 @@ describe('store', () => {
 	it('should create an employee', () => {
 		store.dispatch(addEmployee('dave smith', 3, []));
 		const state = store.getState();
-		expect(state.employees).toEqual([{
+		expect(state.employees.current).toEqual([{
 			id: 1,
 			name: 'dave smith',
 			totalYearsExperience: 3,

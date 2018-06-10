@@ -55,7 +55,7 @@ export default connect(
 	(state: IState) => {
 		console.log(state);
 		return {
-			employees: state.employees,
+			employees: state.employees.current,
 			maxSimultaneousCompetencies: state.maxSimultaneousCompetencies
 		};
 	}

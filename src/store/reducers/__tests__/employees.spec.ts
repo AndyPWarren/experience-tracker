@@ -21,8 +21,9 @@ describe('employee reducer', () => {
 				competencies: []
 			};
 			deepFreeze(oldState);
-			const newState = employees(oldState, addEmployee('barbra', 3, []));
-			expect(newState).toEqual([...oldState, expectedEmployee]);
+			const newState = employees({current: oldState, history: oldState}, addEmployee('barbra', 3, []));
+			expect(newState.current).toEqual([...oldState, expectedEmployee]);
+			expect(newState.history).toEqual([...oldState, expectedEmployee]);
 		});
 
 		it('should set the id to 1 when if there are no issues', () => {
@@ -32,8 +33,8 @@ describe('employee reducer', () => {
 				totalYearsExperience: 5,
 				competencies: []
 			};
-			const newState = employees([], addEmployee('dave smith', 5, []));
-			expect(newState).toEqual([expectedEmployee]);
+			const newState = employees({current: [], history: []}, addEmployee('dave smith', 5, []));
+			expect(newState.current).toEqual([expectedEmployee]);
 		});
 	});
 
@@ -62,8 +63,9 @@ describe('employee reducer', () => {
 				}]
 			};
 			deepFreeze(oldState);
-			const newState = employees(oldState, updateEmployee(2, 'barbra green', 5, expectedEmployee.competencies));
-			expect(newState).toEqual([oldState[0], expectedEmployee]);
+			const newState = employees({current: oldState, history: oldState}, updateEmployee(2, 'barbra green', 5, expectedEmployee.competencies));
+			expect(newState.current).toEqual([oldState[0], expectedEmployee]);
+			expect(newState.history).toEqual([...oldState, expectedEmployee]);
 		});
 	});
 
@@ -85,8 +87,8 @@ describe('employee reducer', () => {
 				oldState[1]
 			];
 			deepFreeze(oldState);
-			const newState = employees(oldState, deleteEmployee(1);
-			expect(newState).toEqual(expectedState);
+			const newState = employees({current: oldState, history: []}, deleteEmployee(1));
+			expect(newState.current).toEqual(expectedState);
 		});
 	});
 });

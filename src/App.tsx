@@ -8,6 +8,7 @@ import AlertManager from './components/alert/alert-manager';
 import MainAppBar from './components/app-bar';
 import Admin from './components/admin';
 import SingleEmployee from './components/employee/single-employee';
+import Audit from './components/audit';
 /**
  * Main app component defines the routes
  *
@@ -23,10 +24,11 @@ export default class App extends React.Component {
           <MainAppBar />
           <div className="App">
             <Route path="/" exact={true} component={Home} />
-            <Route path="/admin" component={Admin} />
+            <Route path="/admin" exact={true} component={Admin} />
             <Route path="/employee/:employeeId" component={SingleEmployee} />
             <Route path="/add-employee" component={UpdateEmployee} />
             <Route path="/edit-employee/:employeeId" component={UpdateEmployee} />
+            <Route path="/admin/audit" exact={true} component={Audit} />
             <AlertManager />
           </div>
         </div>

@@ -45,7 +45,7 @@ class Home extends React.Component<IProps> {
 export default connect(
 	(state: IState) => {
 		const props: IProps = {
-			employees: state.employees
+			employees: state.employees.current
 		};
 		return props;
 	}

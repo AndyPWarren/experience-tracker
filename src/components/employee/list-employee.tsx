@@ -53,7 +53,7 @@ class ListEmployees extends React.Component<IProps & IDispatchProps, IListEmploy
 					/>
 				</div>
 				<div className="cards-container">
-					{filteredEmployees.map(((employee) =>
+					{filteredEmployees.map((employee) =>
 						<div className="card" key={employee.id}>
 							<EmployeeCard
 								employee={employee}
@@ -73,7 +73,7 @@ class ListEmployees extends React.Component<IProps & IDispatchProps, IListEmploy
 								}}
 							/>
 						</div>
-					))}
+					)}
 				</div>
 			</div>
 		);
@@ -83,7 +83,7 @@ class ListEmployees extends React.Component<IProps & IDispatchProps, IListEmploy
 export default connect(
 	(state: IState) => {
 		const props: IProps = {
-			employees: state.employees,
+			employees: state.employees.current,
 			maxSimultaneousCompetencies: state.maxSimultaneousCompetencies
 		};
 		return props;
