@@ -7,7 +7,7 @@ import EmployeeForm from '../employee/employee-form';
 import { ICompetence } from '../../store/reducers/employees';
 import { IAddEmployee, addEmployee, updateEmployee, IUpdateEmployee } from '../../store/actions';
 import { Typography } from '@material-ui/core';
-import { getPreviousCompetencies } from '../../services/competeny-helpers';
+import { getPreviousCompetencies } from '../../services/competency-helpers';
 
 interface IParams {
 	employeeId: string;

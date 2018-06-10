@@ -1,16 +1,21 @@
 import * as React from 'react';
 import { Typography } from '@material-ui/core';
-import { getNameChanges } from '../services/history';
-import { IEmployee } from '../store/reducers/employees';
+import { getNameChanges } from '../../services/history';
+import { IEmployee } from '../../store/reducers/employees';
 import { connect } from 'react-redux';
-import { IState } from '../store/store';
+import { IState } from '../../store/store';
 import NameChanges from './name-changes';
 
 interface IProps {
 	history: IEmployee[];
 }
 
-
+/**
+ * Audit view
+ *
+ * @class Audit
+ * @extends {React.Component<IProps>}
+ */
 class Audit extends React.Component<IProps> {
 	public render() {
 		const nameChanges = getNameChanges(this.props.history);

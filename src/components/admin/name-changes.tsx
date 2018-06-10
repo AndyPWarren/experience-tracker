@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IChangesId } from '../services/history';
+import { IChangesId } from '../../services/history';
 import { TextField, MenuItem, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 
 interface IProps {
@@ -9,7 +9,13 @@ interface IProps {
 interface IState {
 	selected: number;
 }
-
+/**
+ * Component to display a list of name changes for a selected employee
+ *
+ * @export
+ * @class NameChanges
+ * @extends {React.Component<IProps, IState>}
+ */
 export default class NameChanges extends React.Component<IProps, IState> {
 	public state: IState = {
 		selected: this.props.nameChanges[0].id

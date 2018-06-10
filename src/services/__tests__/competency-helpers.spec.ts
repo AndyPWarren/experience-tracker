@@ -1,5 +1,5 @@
 import { IEmployee } from './../../store/reducers/employees';
-import { checkMaxSimultaneous, getPreviousCompetencies } from "../competeny-helpers";
+import { checkMaxSimultaneous, getPreviousCompetencies } from "../competency-helpers";
 import { ICompetence } from "../../store/reducers/employees";
 
 describe('competency helpers', () => {

@@ -4,7 +4,7 @@ import EmployeeCard from '../employee/employee-card';
 import { deleteEmployee, updateAlert, IAlertPayload, IAlert } from '../../store/actions';
 import { connect } from 'react-redux';
 import { IState } from '../../store/store';
-import { checkMaxSimultaneous, getPreviousCompetencies } from '../../services/competeny-helpers';
+import { checkMaxSimultaneous, getPreviousCompetencies } from '../../services/competency-helpers';
 import IntegrationAutosuggest from '../inputs/autosuggest';
 
 interface IProps {

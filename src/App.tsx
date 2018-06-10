@@ -6,9 +6,9 @@ import Home from './components/home';
 import UpdateEmployee from './components/employee/update-employee';
 import AlertManager from './components/alert/alert-manager';
 import MainAppBar from './components/app-bar';
-import Admin from './components/admin';
+import Admin from './components/admin/admin';
 import SingleEmployee from './components/employee/single-employee';
-import Audit from './components/audit';
+import Audit from './components/admin/audit';
 /**
  * Main app component defines the routes
  *

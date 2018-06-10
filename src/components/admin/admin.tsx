@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Typography, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { IState } from '../store/store';
-import { updateMaxSimCompetencies } from '../store/actions';
-import NumberInput from './inputs/number-input';
-import { IEmployee } from '../store/reducers/employees';
-import { checkMaxSimultaneous } from '../services/competeny-helpers';
-import SimpleEmployeesList from './employee/simple-list';
+import { IState } from '../../store/store';
+import { updateMaxSimCompetencies } from '../../store/actions';
+import NumberInput from '../inputs/number-input';
+import { IEmployee } from '../../store/reducers/employees';
+import { checkMaxSimultaneous } from '../../services/competency-helpers';
+import SimpleEmployeesList from './../employee/simple-list';
 import { Link } from 'react-router-dom';
 
 interface IProps {

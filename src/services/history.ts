@@ -9,7 +9,13 @@ export interface IChangesId {
 	id: number;
 	nameChanges: INameChange[];
 }
-
+/**
+ * returns all the employee name changes for all the employees in a given array
+ *
+ * @export
+ * @param {IEmployee[]} employees
+ * @returns {IChangesId[]}
+ */
 export function getNameChanges(employees: IEmployee[]): IChangesId[] {
 	const ids = employees
 		.map(e => {

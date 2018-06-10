@@ -4,7 +4,7 @@ import { IState } from '../store/store';
 import { connect } from 'react-redux';
 import { IEmployee } from '../store/reducers/employees';
 import { Typography } from '@material-ui/core';
-import FabButton from './fab-button';
+import FabButton from './buttons/fab-button';
 
 interface IProps {
 	employees: IEmployee[];
