@@ -21,17 +21,20 @@ describe('getNameChanges', () => {
 				{
 					id: 1,
 					nameChanges: [
+						{ old: undefined, new: 'Roy' },
 						{ old: 'Roy', new: 'Roy Trenneman' },
 						{ old: 'Roy Trenneman', new: 'Cathy Morganforman' }
 					]
 				}, {
 					id: 2,
 					nameChanges: [
+						{ old: undefined, new: 'Maurice' },
 						{ old: 'Maurice', new: 'Maurice Moss' }
 					]
 				}, {
 					id: 3,
 					nameChanges: [
+						{ old: undefined, new: 'Jen' },
 						{ old: 'Jen', new: 'Jen Barber' }
 					]
 				}
@@ -40,10 +43,7 @@ describe('getNameChanges', () => {
 	});
 
 	it('should return an empty array if there are no changes', () => {
-		employees = [
-			{id: 1, name: 'Roy', totalYearsExperience: 2, competencies: []},
-			{id: 2, name: 'Maurice', totalYearsExperience: 2, competencies: []},
-		];
+		employees = [];
 		const result = getNameChanges(employees);
 		expect(result).toEqual([]);
 	});
