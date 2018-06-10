@@ -48,7 +48,7 @@ export default class UpdateCompetenciesTable extends React.Component<IProps, ISt
 					<TableHead>
 						<TableRow>
 							<TableCell>Competency</TableCell>
-							<TableCell>Years of experience</TableCell>
+							<TableCell numeric={true}>Years of experience</TableCell>
 							<TableCell />
 						</TableRow>
 					</TableHead>
